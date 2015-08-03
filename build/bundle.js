@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "cb4281730bf360b2e719"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "65e7480eab944a779828"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28831,7 +28831,8 @@
 	          votes : ++item.votes
 	        };
 	    });
-	    console.log(5);
+	    //动态修改动态生效 屌不屌
+	    console.log(6666);
 	    this.setState({
 	      'data': sorts
 	    });
