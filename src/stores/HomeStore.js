@@ -8,7 +8,9 @@ class HomeStore {
   }
 
   onGetSortListSuccess(data) {
-    this.sortList = data;
+    this.sortList = data.sort(function(current, next){
+      return next.votes - current.votes;
+    });
   }
 
   onGetSortListFail(errorMessage) {

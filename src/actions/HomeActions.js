@@ -12,19 +12,29 @@ class HomeActions {
 
     this.actions.getSortListSuccess([{
       name: '阿虎',
-      votes: '12394'
+      votes: '12394',
+      imgBannerSrc: "/assets/banner.png",
+      imgSrc: "/assets/comm.png"
     }, {
       name: '阿飞',
-      votes: '12344'
+      votes: '12344',
+      imgBannerSrc: "/assets/banner.png",
+      imgSrc: "/assets/comm.png"
     }, {
       name: '阿思',
-      votes: '12314'
+      votes: '12314',
+      imgBannerSrc: "/assets/banner.png",
+      imgSrc: "/assets/comm.png"
     }, {
       name: '阿吖',
-      votes: '12334'
+      votes: '22334',
+      imgBannerSrc: "/assets/banner.png",
+      imgSrc: "/assets/comm.png"
     }, {
       name: '阿拉',
-      votes: '12323'
+      votes: '12323',
+      imgBannerSrc: "/assets/banner.png",
+      imgSrc: "/assets/comm.png"
     }]);
   }
 

@@ -30,15 +30,36 @@ class Home extends React.Component {
 
   render() {
     var sortNodes = this.state.sortList.map((item, index) => {
-      return (
-        <div onClick={this.handleClick.bind(this, item)}>{item.name}{item.votes}</div>
-      );
+        return index == 0 ?
+          <div className = 'sortBanner'>
+            <div className = "sortShow">
+              <img src={item.imgBannerSrc} />
+            </div>
+            <div className = "sortToolBtn">
+              <div className = "sortActIns"></div>
+              <div className = "sortVotesCount">{item.votes}</div>
+              <div className = "sortBtn">
+                <div className = "sortView"></div>
+                <div className = "sortVote"></div>
+              </div>
+            </div>
+          </div>
+          :
+          <div className = "sortComm">
+            <div className = "sortShow">
+              <div className = "sortVotesCount">{item.votes}</div>
+              <img src={item.imgSrc} />
+            </div>
+            <div className = "sortToolBtn">
+              <div className = "sortView"></div>
+              <div className = "sortVote"></div>
+            </div>
+          </div>;
     });
 
     return (
       <div className='container'>
-        <h3 className='text-center'>Click on the portrait. Select your favorite.</h3>
-        <div className='row'>
+        <div className='pas-sortlist'>
           {sortNodes}
         </div>
       </div>
