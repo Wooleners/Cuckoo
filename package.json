@@ -5,7 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./server.js"
+    "start": "rm -rf dist && webpack && node ./server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,15 @@
   "homepage": "https://github.com/JKFE/PAShow/#readme",
   "dependencies": {
     "alt": "^0.17.1",
+    "autoprefixer-loader": "~2.0.0",
+    "css-animation": "~1.0.3",
+    "css-loader": "^0.14.1",
+    "eslint": "^0.24.1",
+    "eslint-plugin-react": "~2.5.0",
+    "extract-text-webpack-plugin": "^0.8.1",
+    "json-loader": "^0.5.1",
+    "less": "~2.5.1",
+    "less-loader": "^2.2.0",
     "babel": "^5.4.7",
     "babel-core": "^5.4.7",
     "babel-eslint": "^3.1.23",

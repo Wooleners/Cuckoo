@@ -1,21 +1,32 @@
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
+var pkg = require('./package');
 
 module.exports = {
-  // entry: './js/entry.js',
   entry: [
     'webpack-dev-server/client?http://127.0.0.1:3000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server',
     './src/index.js' // Your appʼs entry point
   ],
   output: {
-    path: __dirname + '/build/',
+    path: path.join(process.cwd(), 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/dist/',
+    library: 'antd',
+    libraryTarget: 'umd'
   },
   module: {
     loaders: [{
         test: /\.less$/,
-        loader: 'style!css'
+        loader: ExtractTextPlugin.extract(
+          'css?sourceMap&-minimize!' + 'autoprefixer-loader!' + 'less?sourceMap'
+        )
+      }, {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract(
+          'css?sourceMap&-minimize!' + 'autoprefixer-loader'
+        )
       }, {
         test: /\.jsx?$/,
         loaders: ['react-hot', 'jsx?harmony', 'babel'],
@@ -30,7 +41,9 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   plugins: [
+    new ExtractTextPlugin('[name].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
-  ]
+  ],
+  devtool: 'source-map'
 };
