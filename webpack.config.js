@@ -5,7 +5,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://127.0.0.1:3000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server',
-    './src/entry.js' // Your appʼs entry point
+    './src/index.js' // Your appʼs entry point
   ],
   output: {
     path: __dirname + '/build/',
@@ -13,9 +13,17 @@ module.exports = {
     publicPath: '/dist/'
   },
   module: {
-    loaders: [
-      { test: /\.css$/, loader: 'style!css' },
-      { test: /\.jsx?$/, loaders: ['react-hot', 'jsx?harmony'], exclude: /node_modules/ }
+    loaders: [{
+        test: /\.less$/,
+        loader: 'style!css'
+      }, {
+        test: /\.jsx?$/,
+        loaders: ['react-hot', 'jsx?harmony', 'babel'],
+        exclude: /node_modules/
+      }, {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192'
+      } // inline base64 URLs for <=8k images, direct URLs for the rest
     ]
   },
   resolve: {
