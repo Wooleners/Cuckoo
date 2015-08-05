@@ -1,0 +1,64 @@
+@dialogPrefixCls: pas-dialog;
+.@{dialogPrefixCls} {
+  & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 130%;
+      background: rgba(0,0,0,.7);
+  }
+  &-hidden{
+    display: none;
+  }
+  & .box{
+      position: relative;
+      margin: 0 28px;
+      margin-top: 25%;
+      padding: 5px;
+      background: url("@{images-url}/popup-bg.png");
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,.2) inset;
+  }
+  & .box .content{
+      position: relative;
+      margin-top: 20px;
+      min-height: 200px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,.2) inset;
+      margin-top:30px;
+  }
+  & .close{
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url("@{images-url}/close-icon.png") no-repeat;
+      background-size: 100%;
+      top: -8px;
+      right: -8px;
+  }
+  & .top-icon{
+      position: absolute;
+      display: inline-block;
+      width: 76px;
+      height: 92px;
+      top: -50px;
+      left: 5px;
+  }
+  & .top-icon img{
+      display: block;
+      width: 100%;
+  }
+  .popup-tit{
+      position: absolute;
+      margin-left: 5px;
+      margin-top: 3px;
+  }
+
+}
+
+.@{dialogPrefixCls}-link {
+
+}

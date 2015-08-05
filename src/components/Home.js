@@ -44,7 +44,7 @@ class Home extends React.Component {
         sortListShift = sortList.shift();
     return (
         <div className='pas-sortlist'>
-          <SortBannerNodes onVoteClick={this.onVoteClick.bind(this, sortListShift)} onViewClick={this.onViewClick.bind(this)} result={sortListShift} />
+          <SortBannerNodes onActinsClick={this.onActinsClick} onVoteClick={this.onVoteClick.bind(this, sortListShift)} onViewClick={this.onViewClick.bind(this)} result={sortListShift} />
           <SortCommWrapNodes data={sortList} />
         </div>
     );

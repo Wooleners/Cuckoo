@@ -7,7 +7,7 @@ class SortCommWarpNodes extends React.Component {
       <section className="page-list">
         <ul className="page-list-ul clearfloat">
           {this.props.data.map((item, index) => {
-            return <SortCommNodes data={item}/>;
+            return <SortCommNodes data={item} index={index + 2}/>;
           })}
         </ul>
       </section>

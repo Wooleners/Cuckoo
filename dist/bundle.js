@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "988943db56d5bd8ff2c5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "af179a7bac9e40b49b88"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31931,7 +31931,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	
 	Object.defineProperty(exports, '__esModule', {
-	  value: true
+	    value: true
 	});
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -31955,10 +31955,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _componentsActIns2 = _interopRequireDefault(_componentsActIns);
 	
 	exports['default'] = _react2['default'].createElement(
-	  _reactRouter.Route,
-	  { handler: app },
-	  _react2['default'].createElement(_reactRouter.Route, { path: '/', handler: _componentsHome2['default'] }),
-	  _react2['default'].createElement(_reactRouter.Route, { path: '/actins', handler: _componentsActIns2['default'] })
+	    _reactRouter.Route,
+	    { path: '/', handler: _componentsApp2['default'] },
+	    _react2['default'].createElement(_reactRouter.DefaultRoute, { handler: _componentsHome2['default'] }),
+	    _react2['default'].createElement(_reactRouter.Route, { path: '/actins', handler: _componentsActIns2['default'] }),
+	    _react2['default'].createElement(_reactRouter.NotFoundRoute, { handler: _componentsHome2['default'] })
 	);
 	module.exports = exports['default'];
 	
@@ -33974,7 +33975,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'active-btn' },
-	            _react2['default'].createElement(_reactRouter.Link, { className: 'icon active-btn-view', to: '/actins/' + result.id }),
+	            _react2['default'].createElement('a', { className: 'icon active-btn-view', onClick: this.props.onViewClick, href: 'javascript:void(0)' }),
 	            _react2['default'].createElement('a', { className: 'icon active-btn-vote', onClick: this.props.onVoteClick, href: 'javascript:void(0)' })
 	          )
 	        )
@@ -34139,71 +34140,56 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(264), RootInstanceProvider = __webpack_require__(262), ReactMount = __webpack_require__(136), React = __webpack_require__(71); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
 	
-	'use strict';
+	"use strict";
 	
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var _react = __webpack_require__(71);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouter = __webpack_require__(67);
-	
 	var ActIns = (function (_React$Component) {
 	  _inherits(ActIns, _React$Component);
 	
-	  function ActIns(props) {
+	  function ActIns() {
 	    _classCallCheck(this, ActIns);
 	
-	    _get(Object.getPrototypeOf(ActIns.prototype), 'constructor', this).call(this, props);
+	    _get(Object.getPrototypeOf(ActIns.prototype), "constructor", this).apply(this, arguments);
 	  }
 	
 	  _createClass(ActIns, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {}
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {}
-	  }, {
-	    key: 'onChange',
-	    value: function onChange(state) {}
-	  }, {
-	    key: 'handleClick',
-	    value: function handleClick(item) {}
-	  }, {
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
-	
-	      return _react2['default'].createElement(
-	        'div',
-	        { 'class': 'sub-page' },
-	        _react2['default'].createElement(
-	          'div',
-	          { 'class': 'sub-page-text' },
-	          '投票即可获得万里通积分'
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "sub-page" },
+	        _react2["default"].createElement(
+	          "div",
+	          { className: "sub-page-text" },
+	          "投票即可获得万里通积分"
 	        ),
-	        _react2['default'].createElement('div', { 'class': 'icon sub-page-btn' })
+	        _react2["default"].createElement("div", { className: "icon sub-page-btn" })
 	      );
 	    }
 	  }]);
 	
 	  return ActIns;
-	})(_react2['default'].Component);
+	})(_react2["default"].Component);
 	
-	exports['default'] = ActIns;
-	module.exports = exports['default'];
+	exports["default"] = ActIns;
+	module.exports = exports["default"];
 	
 	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(274), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(71))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ActIns.js" + ": " + err.message); } }); } } })(); }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(42)(module)))
