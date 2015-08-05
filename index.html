@@ -8,6 +8,21 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="./dist/main.css" media="screen" title="no title" charset="utf-8">
+  <script type="text/javascript">
+    var phoneWidth = parseInt(window.screen.width);
+    var scale = phoneWidth / 640;
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)) {
+      var ver = parseFloat(RegExp.$1);
+      if (ver > 2.3) {
+        document.write('<meta name="viewport" content="width=640, minimum-scale = ' + scale + ', maximum-scale = ' + scale + ', target-densitydpi=device-dpi">');
+      } else {
+        document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+      }
+    } else {
+      document.write('<meta name="viewport" content="width=640, user-scalable=no">');
+    }
+  </script>
 </head>
 
 <body id="app">

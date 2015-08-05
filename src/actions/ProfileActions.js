@@ -1,6 +1,6 @@
 import alt from '../alt';
 
-class HomeActions {
+class ProfileActions {
   constructor() {
     this.generateActions(
       'getSortListSuccess',
@@ -11,31 +11,26 @@ class HomeActions {
   getSortList() {
 
     this.actions.getSortListSuccess([{
-      id: 1,
       name: '阿虎',
       votes: '12394',
       imgBannerSrc: "/assets/banner.png",
       imgSrc: "/assets/comm.png"
     }, {
-      id: 2,
       name: '阿飞',
       votes: '12344',
       imgBannerSrc: "/assets/banner.png",
       imgSrc: "/assets/comm.png"
     }, {
-      id: 3,
       name: '阿思',
       votes: '12314',
       imgBannerSrc: "/assets/banner.png",
       imgSrc: "/assets/comm.png"
     }, {
-      id: 4,
       name: '阿吖',
       votes: '22334',
       imgBannerSrc: "/assets/banner.png",
       imgSrc: "/assets/comm.png"
     }, {
-      id: 5,
       name: '阿拉',
       votes: '12323',
       imgBannerSrc: "/assets/banner.png",
@@ -69,4 +64,4 @@ class HomeActions {
   }
 }
 
-export default alt.createActions(HomeActions);
+export default alt.createActions(ProfileActions);
