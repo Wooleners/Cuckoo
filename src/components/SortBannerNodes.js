@@ -36,7 +36,7 @@ class SortBannerNodes extends React.Component {
     return (
       <section className="page-top clearfloat">
         <div className="page-top-left">
-          <img src="/assets/no1.png" alt="" />
+          <img src={this.props.result.imgBannerSrc} alt="" />
         </div>
         <div className="page-top-right">
           <a className="icon active-explain" onClick={this.showDialog.bind(this)}></a>

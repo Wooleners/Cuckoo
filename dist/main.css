@@ -475,6 +475,77 @@ a[disabled] {
   background: url("/assets//btn-ok.png") no-repeat;
   background-size: 100%;
 }
+.pas-profile {
+  width: 640px;
+  margin: 0 auto;
+  background: url("/assets//bg.jpg") repeat;
+  box-shadow: 0 0 15px #d2be46 inset;
+  padding-bottom: 120px;
+}
+.pas-profile .header {
+  height: 100px;
+  padding: 15px 25px 0 50px;
+}
+.pas-profile .content {
+  width: 626px;
+  padding: 25px 0 35px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 22px #d6d4d4 inset;
+  margin: 0 auto;
+}
+.pas-profile .show {
+  width: 592px;
+  padding: 0 17px;
+}
+.pas-profile .title {
+  width: 520px;
+  background: #f6c800;
+  border-radius: 5px;
+  padding: 6px 0;
+  text-align: center;
+  margin: 0 auto;
+}
+.pas-profile .text {
+  margin-top: 10px;
+  padding: 0 30px;
+}
+.pas-profile .text li {
+  height: 40px;
+  border-bottom: 1px solid #be9a00;
+  line-height: 40px;
+  color: #db5d00;
+  font-size: 22px;
+}
+.pas-profile .text li span {
+  background: url("/assets//icon_1.png") left center no-repeat;
+  padding-left: 15px;
+  margin-left: 15px;
+  color: #717171;
+}
+.pas-profile .text li h2 {
+  font-size: 24px;
+  color: #874900;
+}
+.pas-profile .btn_box {
+  padding: 50px 60px 0;
+}
+.pas-profile .btn_box a {
+  margin-left: 40px;
+}
+.pas-profile .more {
+  margin-top: 30px;
+  text-align: center;
+}
+.pas-profile .clear {
+  clear: both;
+}
+.pas-profile .f_left {
+  float: left;
+}
+.pas-profile .f_right {
+  float: right;
+}
 /*重置样式*/
 html {
   font-family: "微软雅黑", Helvetica, STHeiTi, Arial, sans-serif;
@@ -644,7 +715,6 @@ textarea::-webkit-input-placeholder {
   height: 214px;
   top: -15px;
   left: -17px;
-  background: url("/assets//imgbg.png") no-repeat;
   z-index: 10;
 }
 .page-list-ul li img {

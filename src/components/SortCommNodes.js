@@ -6,7 +6,7 @@ class SortCommNodes extends React.Component {
     return (
       <li>
         <div className="list-ul-div">
-          <img src="/assets/eg.png" alt="placeholder+image" />
+          <img src={this.props.data.imgSrc} alt="placeholder+image" />
           <div className="imgbg"></div>
           <div className="subimgno">{this.props.index}</div>
           <div className="note">{this.props.data.votes}票</div>
