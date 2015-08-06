@@ -42,14 +42,14 @@ class SortBannerNodes extends React.Component {
           <img src="/assets/no1.png" alt="" />
         </div>
         <div className="page-top-right">
-          <div className="icon active-explain" onClick={this.showDialog.bind(this)}></div>
+          <a className="icon active-explain" onClick={this.showDialog.bind(this)}></a>
           <div className="active-no clearfloat">{result.votes}票</div>
           <div className="active-btn">
             <a className="icon active-btn-view" onClick={this.props.onViewClick} href="javascript:void(0)"></a>
             <a className="icon active-btn-vote" onClick={this.props.onVoteClick} href="javascript:void(0)"></a>
           </div>
         </div>
-        <Dialog visible={this.state.visible} onClose={this.handleClose.bind(this)}/>
+        <Dialog visible={this.state.visible} type="actIns" onClose={this.handleClose.bind(this)}/>
       </section>
     );
   }

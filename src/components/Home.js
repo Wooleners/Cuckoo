@@ -28,11 +28,11 @@ class Home extends React.Component {
   onVoteClick(item) {
     // var sortId = item.sortId;
     // HomeActions.vote(sortId);
-
+    console.log(1);
   }
 
   onViewClick(item){
-
+    console.log(2);
   }
 
   onActinsClick(item){

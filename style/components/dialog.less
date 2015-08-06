@@ -8,14 +8,15 @@
       bottom: 0;
       height: 130%;
       background: rgba(0,0,0,.7);
+      z-index: 999;
   }
   &-hidden{
     display: none;
   }
   & .box{
       position: relative;
-      margin: 0 28px;
-      margin-top: 25%;
+      margin: 0 60px;
+      margin-top: 30%;
       padding: 5px;
       background: url("@{images-url}/popup-bg.png");
       border-radius: 8px;
@@ -32,20 +33,20 @@
   }
   & .close{
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 40px;
+      height: 40px;
       background: url("@{images-url}/close-icon.png") no-repeat;
       background-size: 100%;
-      top: -8px;
-      right: -8px;
+      top: -20px;
+      right: -15px;
   }
   & .top-icon{
       position: absolute;
       display: inline-block;
-      width: 76px;
-      height: 92px;
-      top: -50px;
-      left: 5px;
+      width: 100px;
+      height: 100px;
+      top: -75px;
+      left: 20px;
   }
   & .top-icon img{
       display: block;
@@ -55,6 +56,42 @@
       position: absolute;
       margin-left: 5px;
       margin-top: 3px;
+  }
+
+  /*popup mv*/
+  .mv-word{
+      text-align: center;
+      padding-top: 40px;
+      width:400px;
+  }
+  .mv-word img{
+      display: inline-block;
+  }
+  .mv-btn{
+      text-align: center;
+      padding-top: 40px;
+  }
+  .mv-btn1-l, .mv-btn1-r{
+      display: inline-block;
+      width: 96px;
+      height: 27px;
+      background: url("@{images-url}/mv-btn1.png") no-repeat;
+      background-size: 211px 27px;
+  }
+  .mv-btn1-l{
+      background-position: left center;
+      margin-right: 5px;
+  }
+  .mv-btn1-r{
+      background-position: right center;
+      margin-left: 5px;
+  }
+  .mv-btn-ok{
+      display: inline-block;
+      width: 96px;
+      height: 27px;
+      background: url("@{images-url}/btn-ok.png") no-repeat;
+      background-size: 100%;
   }
 
 }

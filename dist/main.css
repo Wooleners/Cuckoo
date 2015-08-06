@@ -382,6 +382,98 @@ a[disabled] {
   width: 100%;
   height: 250px;
 }
+.pas-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 130%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  /*popup mv*/
+}
+.pas-dialog-hidden {
+  display: none;
+}
+.pas-dialog .box {
+  position: relative;
+  margin: 0 28px;
+  margin-top: 25%;
+  padding: 5px;
+  background: url("/assets//popup-bg.png");
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) inset;
+}
+.pas-dialog .box .content {
+  position: relative;
+  margin-top: 20px;
+  min-height: 200px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) inset;
+  margin-top: 30px;
+}
+.pas-dialog .close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: url("/assets//close-icon.png") no-repeat;
+  background-size: 100%;
+  top: -8px;
+  right: -8px;
+}
+.pas-dialog .top-icon {
+  position: absolute;
+  display: inline-block;
+  width: 76px;
+  height: 92px;
+  top: -50px;
+  left: 5px;
+}
+.pas-dialog .top-icon img {
+  display: block;
+  width: 100%;
+}
+.pas-dialog .popup-tit {
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.pas-dialog .mv-word {
+  text-align: center;
+  padding-top: 40px;
+}
+.pas-dialog .mv-word img {
+  display: inline-block;
+}
+.pas-dialog .mv-btn {
+  text-align: center;
+  padding-top: 40px;
+}
+.pas-dialog .mv-btn1-l,
+.pas-dialog .mv-btn1-r {
+  display: inline-block;
+  width: 96px;
+  height: 27px;
+  background: url("/assets//mv-btn1.png") no-repeat;
+  background-size: 211px 27px;
+}
+.pas-dialog .mv-btn1-l {
+  background-position: left center;
+  margin-right: 5px;
+}
+.pas-dialog .mv-btn1-r {
+  background-position: right center;
+  margin-left: 5px;
+}
+.pas-dialog .mv-btn-ok {
+  display: inline-block;
+  width: 96px;
+  height: 27px;
+  background: url("/assets//btn-ok.png") no-repeat;
+  background-size: 100%;
+}
 /*重置样式*/
 html {
   font-family: "微软雅黑", Helvetica, STHeiTi, Arial, sans-serif;
@@ -638,6 +730,7 @@ textarea::-webkit-input-placeholder {
   height: 64px;
   margin-bottom: 84px;
   margin: 0 auto;
+  background-position: -33px -347px;
 }
 
 /*# sourceMappingURL=main.css.map*/
