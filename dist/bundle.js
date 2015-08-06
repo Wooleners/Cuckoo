@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1026ed78f740a1792869"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b32dda2f50953f0eec53"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8020,7 +8020,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	__webpack_require__(299);
+	__webpack_require__(302);
 	
 	_reactRouter2['default'].run(_routes2['default'], _reactRouter2['default'].HistoryLocation, function (Handler) {
 	  _react2['default'].render(_react2['default'].createElement(Handler, null), document.getElementById('app'));
@@ -31955,11 +31955,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _componentsActIns2 = _interopRequireDefault(_componentsActIns);
 	
+	var _componentsProfile = __webpack_require__(299);
+	
+	var _componentsProfile2 = _interopRequireDefault(_componentsProfile);
+	
 	exports['default'] = _react2['default'].createElement(
 	    _reactRouter.Route,
 	    { path: '/', handler: _componentsApp2['default'] },
 	    _react2['default'].createElement(_reactRouter.DefaultRoute, { handler: _componentsHome2['default'] }),
 	    _react2['default'].createElement(_reactRouter.Route, { path: '/actins', handler: _componentsActIns2['default'] }),
+	    _react2['default'].createElement(_reactRouter.Route, { path: '/profile/:id', handler: _componentsProfile2['default'] }),
 	    _react2['default'].createElement(_reactRouter.NotFoundRoute, { handler: _componentsHome2['default'] })
 	);
 	module.exports = exports['default'];
@@ -32216,7 +32221,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function onVoteClick(item) {
 	      // var sortId = item.sortId;
 	      // HomeActions.vote(sortId);
-	
+	      console.log(1);
 	    }
 	  }, {
 	    key: 'onViewClick',
@@ -32234,8 +32239,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return _react2['default'].createElement(
 	        'div',
 	        { className: 'pas-sortlist' },
-	        _react2['default'].createElement(_SortBannerNodes2['default'], { onActinsClick: this.onActinsClick, onVoteClick: this.onVoteClick.bind(this, sortListShift), onViewClick: this.onViewClick.bind(this), result: sortListShift }),
-	        _react2['default'].createElement(_SortCommWrapNodes2['default'], { data: sortList })
+	        _react2['default'].createElement(_SortBannerNodes2['default'], { onActinsClick: this.onActinsClick, onVoteClick: this.onVoteClick.bind(this, sortListShift), onViewClick: this.onViewClick.bind(this, sortListShift), result: sortListShift }),
+	        _react2['default'].createElement(_SortCommWrapNodes2['default'], { onViewClick: this.onViewClick.bind(this), data: sortList })
 	      );
 	    }
 	  }]);
@@ -33997,7 +34002,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _react2['default'].createElement(
 	          'div',
 	          { className: 'page-top-right' },
-	          _react2['default'].createElement('div', { className: 'icon active-explain', onClick: this.showDialog.bind(this) }),
+	          _react2['default'].createElement('a', { className: 'icon active-explain', onClick: this.showDialog.bind(this) }),
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'active-no clearfloat' },
@@ -34091,7 +34096,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _react2['default'].createElement(
 	          'div',
 	          { className: 'box' },
-	          _react2['default'].createElement('span', { className: 'close', onClick: props.onClose }),
+	          _react2['default'].createElement('a', { className: 'close', onClick: props.onClose }),
 	          _react2['default'].createElement(
 	            'span',
 	            { className: 'top-icon' },
@@ -34163,6 +34168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(SortCommWarpNodes, [{
 	    key: 'render',
 	    value: function render() {
+	      var onViewClick = this.props.onViewClick;
 	      return _react2['default'].createElement(
 	        'section',
 	        { className: 'page-list' },
@@ -34170,7 +34176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          'ul',
 	          { className: 'page-list-ul clearfloat' },
 	          this.props.data.map(function (item, index) {
-	            return _react2['default'].createElement(_SortCommNodes2['default'], { data: item, index: index + 2 });
+	            return _react2['default'].createElement(_SortCommNodes2['default'], { data: item, onViewClick: onViewClick, index: index + 2 });
 	          })
 	        )
 	      );
@@ -34246,7 +34252,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _react2["default"].createElement(
 	            "div",
 	            { className: "li-btn" },
-	            _react2["default"].createElement("a", { className: "icon active-btn-view", href: "" }),
+	            _react2["default"].createElement("a", { className: "icon active-btn-view", onClick: this.props.onViewClick.bind(this, this.props.data) }),
 	            _react2["default"].createElement("a", { className: "icon active-btn-vote" })
 	          )
 	        )
@@ -34325,6 +34331,247 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 299 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(265), RootInstanceProvider = __webpack_require__(263), ReactMount = __webpack_require__(137), React = __webpack_require__(72); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var _react = __webpack_require__(72);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(68);
+	
+	var _storesProfileStore = __webpack_require__(300);
+	
+	var _storesProfileStore2 = _interopRequireDefault(_storesProfileStore);
+	
+	var _actionsProfileActions = __webpack_require__(301);
+	
+	var _actionsProfileActions2 = _interopRequireDefault(_actionsProfileActions);
+	
+	var Profile = (function (_React$Component) {
+	  _inherits(Profile, _React$Component);
+	
+	  function Profile(props) {
+	    _classCallCheck(this, Profile);
+	
+	    _get(Object.getPrototypeOf(Profile.prototype), 'constructor', this).call(this, props);
+	    this.state = _storesProfileStore2['default'].getState();
+	    this.onChange = this.onChange.bind(this);
+	  }
+	
+	  _createClass(Profile, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      _storesProfileStore2['default'].listen(this.onChange);
+	      _actionsProfileActions2['default'].getSortList();
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      _storesProfileStore2['default'].unlisten(this.onChange);
+	    }
+	  }, {
+	    key: 'onChange',
+	    value: function onChange(state) {
+	      this.setState(state);
+	    }
+	  }, {
+	    key: 'handleClick',
+	    value: function handleClick(item) {}
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	
+	      return _react2['default'].createElement(
+	        'div',
+	        { className: 'pas-profile' },
+	        _react2['default'].createElement(
+	          'div',
+	          null,
+	          'profile'
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Profile;
+	})(_react2['default'].Component);
+	
+	exports['default'] = Profile;
+	module.exports = exports['default'];
+	
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(275), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(72))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Profile.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module)))
+
+/***/ },
+/* 300 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(265), RootInstanceProvider = __webpack_require__(263), ReactMount = __webpack_require__(137), React = __webpack_require__(72); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	var _alt = __webpack_require__(280);
+	
+	var _alt2 = _interopRequireDefault(_alt);
+	
+	var _actionsProfileActions = __webpack_require__(301);
+	
+	var _actionsProfileActions2 = _interopRequireDefault(_actionsProfileActions);
+	
+	var ProfileStore = (function () {
+	  function ProfileStore() {
+	    _classCallCheck(this, ProfileStore);
+	
+	    this.bindActions(_actionsProfileActions2['default']);
+	  }
+	
+	  _createClass(ProfileStore, [{
+	    key: 'onGetSortListSuccess',
+	    value: function onGetSortListSuccess(data) {}
+	  }, {
+	    key: 'onGetSortListFail',
+	    value: function onGetSortListFail(errorMessage) {
+	      toastr.error(errorMessage);
+	    }
+	  }]);
+	
+	  return ProfileStore;
+	})();
+	
+	exports['default'] = _alt2['default'].createStore(ProfileStore);
+	module.exports = exports['default'];
+	
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(275), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(72))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ProfileStore.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module)))
+
+/***/ },
+/* 301 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(265), RootInstanceProvider = __webpack_require__(263), ReactMount = __webpack_require__(137), React = __webpack_require__(72); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	var _alt = __webpack_require__(280);
+	
+	var _alt2 = _interopRequireDefault(_alt);
+	
+	var ProfileActions = (function () {
+	  function ProfileActions() {
+	    _classCallCheck(this, ProfileActions);
+	
+	    this.generateActions('getSortListSuccess', 'getSortListFail');
+	  }
+	
+	  _createClass(ProfileActions, [{
+	    key: 'getSortList',
+	    value: function getSortList() {
+	
+	      this.actions.getSortListSuccess([{
+	        name: '阿虎',
+	        votes: '12394',
+	        imgBannerSrc: "/assets/banner.png",
+	        imgSrc: "/assets/comm.png"
+	      }, {
+	        name: '阿飞',
+	        votes: '12344',
+	        imgBannerSrc: "/assets/banner.png",
+	        imgSrc: "/assets/comm.png"
+	      }, {
+	        name: '阿思',
+	        votes: '12314',
+	        imgBannerSrc: "/assets/banner.png",
+	        imgSrc: "/assets/comm.png"
+	      }, {
+	        name: '阿吖',
+	        votes: '22334',
+	        imgBannerSrc: "/assets/banner.png",
+	        imgSrc: "/assets/comm.png"
+	      }, {
+	        name: '阿拉',
+	        votes: '12323',
+	        imgBannerSrc: "/assets/banner.png",
+	        imgSrc: "/assets/comm.png"
+	      }]);
+	    }
+	  }, {
+	    key: 'getSortListVote',
+	    value: function getSortListVote() {
+	
+	      this.actions.getSortListSuccess([{
+	        name: '阿虎',
+	        votes: '123941'
+	      }, {
+	        name: '阿飞',
+	        votes: '123441'
+	      }, {
+	        name: '阿思',
+	        votes: '123141'
+	      }, {
+	        name: '阿吖',
+	        votes: '123341'
+	      }, {
+	        name: '阿拉',
+	        votes: '123231'
+	      }]);
+	    }
+	  }, {
+	    key: 'vote',
+	    value: function vote(sortId) {
+	
+	      this.actions.getSortListVote();
+	    }
+	  }]);
+	
+	  return ProfileActions;
+	})();
+	
+	exports['default'] = _alt2['default'].createActions(ProfileActions);
+	module.exports = exports['default'];
+	
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(275), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(72))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ProfileActions.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module)))
+
+/***/ },
+/* 302 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

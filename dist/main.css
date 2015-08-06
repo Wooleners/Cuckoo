@@ -398,8 +398,8 @@ a[disabled] {
 }
 .pas-dialog .box {
   position: relative;
-  margin: 0 28px;
-  margin-top: 25%;
+  margin: 0 60px;
+  margin-top: 30%;
   padding: 5px;
   background: url("/assets//popup-bg.png");
   border-radius: 8px;
@@ -416,20 +416,20 @@ a[disabled] {
 }
 .pas-dialog .close {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   background: url("/assets//close-icon.png") no-repeat;
   background-size: 100%;
-  top: -8px;
-  right: -8px;
+  top: -20px;
+  right: -15px;
 }
 .pas-dialog .top-icon {
   position: absolute;
   display: inline-block;
-  width: 76px;
-  height: 92px;
-  top: -50px;
-  left: 5px;
+  width: 100px;
+  height: 100px;
+  top: -75px;
+  left: 20px;
 }
 .pas-dialog .top-icon img {
   display: block;
@@ -443,6 +443,7 @@ a[disabled] {
 .pas-dialog .mv-word {
   text-align: center;
   padding-top: 40px;
+  width: 400px;
 }
 .pas-dialog .mv-word img {
   display: inline-block;
@@ -596,6 +597,8 @@ textarea::-webkit-input-placeholder {
   height: 43px;
   background-position: 0 0;
   line-height: 41px;
+  z-index: 10;
+  display: inline-block;
 }
 .active-no {
   width: 105px;

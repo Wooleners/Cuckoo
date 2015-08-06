@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 class SortCommNodes extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class SortCommNodes extends React.Component {
           <div className="subimgno">{this.props.index}</div>
           <div className="note">{this.props.data.votes}票</div>
           <div className="li-btn">
-            <a className="icon active-btn-view" href=""></a>
+            <Link className="icon active-btn-view" to={"/profile/" + this.props.data.id}></Link>
             <a className="icon active-btn-vote"></a>
           </div>
         </div>

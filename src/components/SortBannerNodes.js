@@ -33,9 +33,6 @@ class SortBannerNodes extends React.Component {
   }
 
   render() {
-    var result = this.props.result || {
-      votes: ""
-    };
     return (
       <section className="page-top clearfloat">
         <div className="page-top-left">
@@ -43,9 +40,9 @@ class SortBannerNodes extends React.Component {
         </div>
         <div className="page-top-right">
           <a className="icon active-explain" onClick={this.showDialog.bind(this)}></a>
-          <div className="active-no clearfloat">{result.votes}票</div>
+          <div className="active-no clearfloat">{this.props.result.votes}票</div>
           <div className="active-btn">
-            <a className="icon active-btn-view" onClick={this.props.onViewClick} href="javascript:void(0)"></a>
+            <Link className="icon active-btn-view" to={"/profile/" + this.props.result.id} href="javascript:void(0)"></Link>
             <a className="icon active-btn-vote" onClick={this.props.onVoteClick} href="javascript:void(0)"></a>
           </div>
         </div>

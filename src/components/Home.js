@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, Navigation} from 'react-router';
 import HomeStore from '../stores/HomeStore';
 import HomeActions from '../actions/HomeActions';
 import SortBannerNodes from './SortBannerNodes';
@@ -21,22 +21,34 @@ class Home extends React.Component {
     HomeStore.unlisten(this.onChange);
   }
 
+  componentWillMount() {
+    this.setState({
+      sortList: [
+        {
+          id: '',
+          name: '',
+          votes: '',
+          imgBannerSrc: "",
+          imgSrc: ""
+        }
+      ]
+    });
+  }
+
   onChange(state) {
     this.setState(state);
   }
 
   onVoteClick(item) {
-    // var sortId = item.sortId;
-    // HomeActions.vote(sortId);
-    console.log(1);
+
   }
 
   onViewClick(item){
-    console.log(2);
+
   }
 
   onActinsClick(item){
-    console.log("actins");
+
   }
 
   render() {
@@ -44,8 +56,8 @@ class Home extends React.Component {
         sortListShift = sortList.shift();
     return (
         <div className='pas-sortlist'>
-          <SortBannerNodes onActinsClick={this.onActinsClick} onVoteClick={this.onVoteClick.bind(this, sortListShift)} onViewClick={this.onViewClick.bind(this)} result={sortListShift} />
-          <SortCommWrapNodes data={sortList} />
+          <SortBannerNodes onActinsClick={this.onActinsClick} onVoteClick={this.onVoteClick.bind(this, sortListShift)} onViewClick={this.onViewClick.bind(this, sortListShift)} result={sortListShift} />
+          <SortCommWrapNodes  onViewClick={this.onViewClick.bind(this)} data={sortList} />
         </div>
     );
   }

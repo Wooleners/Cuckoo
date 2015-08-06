@@ -19,6 +19,13 @@ class Profile extends React.Component {
     ProfileStore.unlisten(this.onChange);
   }
 
+  componentWillMount() {
+    this.setState({
+      a:1
+    });
+    return false;
+  }
+
   onChange(state) {
     this.setState(state);
   }
@@ -28,8 +35,6 @@ class Profile extends React.Component {
   }
 
   render() {
-    
-
     return (
       <div className='pas-profile'>
         <div>profile</div>
@@ -37,5 +42,9 @@ class Profile extends React.Component {
     );
   }
 }
+
+Profile.contextTypes = {
+  router: React.PropTypes.func.isRequired
+};
 
 export default Profile;
