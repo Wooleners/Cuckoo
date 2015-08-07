@@ -1,5 +1,6 @@
 import alt from '../alt';
 import HomeActions from '../actions/HomeActions';
+import SortActions from '../actions/SortActions';
 
 class HomeStore {
   constructor() {
@@ -7,14 +8,17 @@ class HomeStore {
     this.sortList = [];
   }
 
-  onGetSortListSuccess(data) {
-    this.sortList = data.sort(function(current, next){
+  onGetSortListSuccess(list) {
+
+    this.sortList = list.sort((current, next) => {
       return next.votes - current.votes;
+    }).map((item, index) => {
+      return SortActions.getInfoById(item.id, item.votes);
     });
   }
 
   onGetSortListFail(errorMessage) {
-    toastr.error(errorMessage);
+    console.log(errorMessage);
   }
 
 }

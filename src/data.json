@@ -1,33 +1,53 @@
 {
   "sortList" : [{
-    "id": 1,
-    "name": "重庆家庭",
-    "votes": "12394",
+    "id": 1001,
+    "name": "魔术之家",
+    "memberInfo": "王瑞雅、爸爸、表姐、弟弟",
+    "joinManifesto": "相伴成长，共筑理想。创意才艺，共创..",
+    "joinArea": "重庆",
+    "promotionArea": "中区",
     "imgBannerSrc": "/assets/banner/cqjt.png",
-    "imgSrc": "/assets/comm/cqjt.png"
+    "imgSrc": "/assets/comm/cqjt.png",
+    "profileImgSrc": "/assets/profile/cqjt.png"
   }, {
-    "id": 2,
-    "name": "黑龙江家庭",
-    "votes": "32344",
+    "id": 1002,
+    "name": "冰城Q宝",
+    "memberInfo": "于和皓喆、爸爸于洋、妈妈李海蛟",
+    "joinManifesto": "QQ棒QQ强，QQ配音最闪亮",
+    "joinArea": "哈尔滨",
+    "promotionArea": "北区",
     "imgBannerSrc": "/assets/banner/hljjt.png",
-    "imgSrc": "/assets/comm/hljjt.png"
+    "imgSrc": "/assets/comm/hljjt.png",
+    "profileImgSrc": "/assets/profile/hljjt.png"
   }, {
-    "id": 3,
-    "name": "山西家庭",
-    "votes": "12314",
+    "id": 1003,
+    "name": "魔幻舞团",
+    "memberInfo": "儿子、女儿、爸爸、妈妈",
+    "joinManifesto": "舞动新节奏，happy伐木累！",
+    "joinArea": "山西",
+    "promotionArea": "中西区",
     "imgBannerSrc": "/assets/banner/sxjt.png",
-    "imgSrc": "/assets/comm/sxjt.png"
+    "imgSrc": "/assets/comm/sxjt.png",
+    "profileImgSrc": "/assets/profile/sxjt.png"
   }, {
-    "id": 4,
-    "name": "苏州家庭",
-    "votes": "22334",
+    "id": 1004,
+    "name": "开心满屋",
+    "memberInfo": "卓悦瑶、妈妈、爸爸",
+    "joinManifesto": "悦瑶悦瑶，聪颖灵巧；喜弄车鼓，看我悦瑶！",
+    "joinArea": " 厦门",
+    "promotionArea": "南区",
     "imgBannerSrc": "/assets/banner/szjt.png",
-    "imgSrc": "/assets/comm/szjt.png"
+    "imgSrc": "/assets/comm/szjt.png",
+    "profileImgSrc": "/assets/profile/szjt.png"
   }, {
-    "id": 5,
-    "name": "厦门家庭",
-    "votes": "12323",
+    "id": 1005,
+    "name": " 江南之音",
+    "memberInfo": " 孙天禹、妈妈、阿姨",
+    "joinManifesto": "天禹天禹，谁与争锋",
+    "joinArea": "苏州",
+    "promotionArea": "东区",
     "imgBannerSrc": "/assets/banner/xmjt.png",
-    "imgSrc": "/assets/comm/xmjt.png"
+    "imgSrc": "/assets/comm/xmjt.png",
+    "profileImgSrc": "/assets/profile/xmjt.png"
   }]
 }

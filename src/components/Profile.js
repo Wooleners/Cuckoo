@@ -8,6 +8,7 @@ class Profile extends React.Component {
     super(props);
     this.state = ProfileStore.getState();
     this.state.paramsId = context.router.getCurrentParams().id;
+    this.state.votes = context.router.getCurrentQuery().votes;
     this.onChange = this.onChange.bind(this);
   }
 
@@ -43,16 +44,16 @@ class Profile extends React.Component {
             <img src="/assets/header_img.png" alt="" />
         </div>
         <div className="content">
-            <div className="show"><img src="/assets/show_img1.png" alt="" /></div>
-            <div className="title"><img src="/assets/title_1.png" alt="" /></div>
+            <div className="show"><img src={this.state.profileInfo.profileImgSrc} alt="" /></div>
+            <div className="title">{this.state.profileInfo.name}</div>
             <div className="text">
                 <ul>
                     <li><h2>选手组合简介</h2></li>
-                    <li><span>成员信息：</span>小虎、小龙、小虎妈妈</li>
-                    <li><span>参赛宣言：</span>我们是相亲相爱一家人！</li>
-                    <li><span>参赛地区：</span>参赛地区：</li>
-                    <li><span>晋级赛区：</span>哈尔滨</li>
-                    <li><span>票数：</span>12345</li>
+                    <li><span>成员信息：</span>{this.state.profileInfo.memberInfo}</li>
+                    <li><span>参赛宣言：</span>{this.state.profileInfo.joinManifesto}</li>
+                    <li><span>参赛地区：</span>{this.state.profileInfo.joinArea}</li>
+                    <li><span>晋级赛区：</span>{this.state.profileInfo.promotionArea}</li>
+                    <li><span>票数：</span>{this.state.votes}</li>
                 </ul>
             </div>
             <div className="btn_box">

@@ -42,7 +42,7 @@ class SortBannerNodes extends React.Component {
           <a className="icon active-explain" onClick={this.showDialog.bind(this)}></a>
           <div className="active-no clearfloat">{this.props.result.votes}票</div>
           <div className="active-btn">
-            <Link className="icon active-btn-view" to={"/profile/" + this.props.result.id} href="javascript:void(0)"></Link>
+            <Link className="icon active-btn-view" to={"/profile/" + this.props.result.id + '?votes=' + this.props.result.votes} href="javascript:void(0)"></Link>
             <a className="icon active-btn-vote" onClick={this.props.onVoteClick} href="javascript:void(0)"></a>
           </div>
         </div>

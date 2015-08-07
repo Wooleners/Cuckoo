@@ -12,7 +12,6 @@ class ProfileStore {
     this.profileInfo = ProfileData.sortList.filter((item, index) => {
       return item.id == id;
     }).shift();
-    console.dir(this.profileInfo);
   }
 
 }
