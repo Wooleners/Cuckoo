@@ -9,7 +9,6 @@ class HomeStore {
   }
 
   onGetSortListSuccess(list) {
-
     this.sortList = list.sort((current, next) => {
       return next.votes - current.votes;
     }).map((item, index) => {
@@ -19,6 +18,30 @@ class HomeStore {
 
   onGetSortListFail(errorMessage) {
     console.log(errorMessage);
+  }
+
+  onSendScoreSuccess() {
+    
+  }
+
+  onArgsVerifyFail() {
+
+  }
+
+  onSysException() {
+
+  }
+
+  onUnlogin() {
+
+  }
+
+  onYetSentScore() {
+
+  }
+
+  onYetOverdue() {
+
   }
 
 }

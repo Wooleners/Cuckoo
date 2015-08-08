@@ -5,26 +5,10 @@ class Dialog extends React.Component {
   render() {
     var props = this.props,
         visible = props.visible,
+        context = props.context,
         classNames = ["pas-dialog"];
-    if(!visible){
-      classNames.push('pas-dialog-hidden');
-    }
-    var templets = [{
-      type: 'voteFinish',
-      content: '投票完成'
-    }, {
-      type: 'voteSuccess',
-      content: '投票成功'
-    }, {
-      type: 'actOver',
-      content: '活动结束'
-    }, {
-      type: 'actIns',
-      content: '活动介绍'
-    }];
-    var content = templets.filter(item => {
-      return item.type == props.type;
-    })[0].content;
+
+    !visible ? classNames.push('pas-dialog-hidden') : false;
     return (
       <div className={classNames.join(" ")}>
       	<div className="box">
@@ -33,7 +17,7 @@ class Dialog extends React.Component {
       		<div className="content">
       			<div className="inner"></div>
       			<div className="mv-word">
-              {content}
+              {context}
       			</div>
       		</div>
       	</div>

@@ -505,6 +505,7 @@ a[disabled] {
   padding: 6px 0;
   text-align: center;
   margin: 0 auto;
+  font-size: 25px;
 }
 .pas-profile .text {
   margin-top: 10px;
@@ -755,7 +756,7 @@ textarea::-webkit-input-placeholder {
   font-weight: bold;
   font-size: 24px;
 }
-.page-btm1 span {
+.page-btm1 span.spec {
   color: #ffec1e;
 }
 .page-button {

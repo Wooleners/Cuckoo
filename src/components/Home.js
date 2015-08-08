@@ -40,7 +40,7 @@ class Home extends React.Component {
   }
 
   onVoteClick(item) {
-    console.dir(item)
+    HomeActions.vote(item.id);
   }
 
   onViewClick(item){
@@ -52,11 +52,12 @@ class Home extends React.Component {
   }
 
   render() {
-    var sortList = this.state.sortList,
-        sortListShift = sortList.shift();
+    var sortList = this.state.sortList.filter((item, index) => {
+      return index !== 0 ? item : false;
+    });
     return (
         <div className='pas-sortlist'>
-          <SortBannerNodes onActinsClick={this.onActinsClick} onVoteClick={this.onVoteClick.bind(this, sortListShift)} onViewClick={this.onViewClick.bind(this, sortListShift)} result={sortListShift} />
+          <SortBannerNodes onActinsClick={this.onActinsClick} onVoteClick={this.onVoteClick.bind(this, this.state.sortList[0])} onViewClick={this.onViewClick.bind(this, this.state.sortList[0])} result={this.state.sortList[0]} />
           <SortCommWrapNodes onVoteClick={this.onVoteClick} data={sortList} />
           <section className="page-btm1">
             如果您投票的选手获得

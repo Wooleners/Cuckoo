@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bc547daaa439f0ecbae0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a0231f6d47ae4041e019"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8021,7 +8021,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	__webpack_require__(304);
+	__webpack_require__(306);
 	
 	_reactRouter2['default'].run(_routes2['default'], _reactRouter2['default'].HashLocation, function (Handler) {
 	  _react2['default'].render(_react2['default'].createElement(Handler, null), document.getElementById('app'));
@@ -31952,11 +31952,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _componentsHome2 = _interopRequireDefault(_componentsHome);
 	
-	var _componentsActIns = __webpack_require__(299);
+	var _componentsActIns = __webpack_require__(302);
 	
 	var _componentsActIns2 = _interopRequireDefault(_componentsActIns);
 	
-	var _componentsProfile = __webpack_require__(300);
+	var _componentsProfile = __webpack_require__(303);
 	
 	var _componentsProfile2 = _interopRequireDefault(_componentsProfile);
 	
@@ -32182,11 +32182,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _actionsHomeActions2 = _interopRequireDefault(_actionsHomeActions);
 	
-	var _SortBannerNodes = __webpack_require__(295);
+	var _SortBannerNodes = __webpack_require__(298);
 	
 	var _SortBannerNodes2 = _interopRequireDefault(_SortBannerNodes);
 	
-	var _SortCommWrapNodes = __webpack_require__(297);
+	var _SortCommWrapNodes = __webpack_require__(300);
 	
 	var _SortCommWrapNodes2 = _interopRequireDefault(_SortCommWrapNodes);
 	
@@ -32232,7 +32232,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }, {
 	    key: 'onVoteClick',
-	    value: function onVoteClick(item) {}
+	    value: function onVoteClick(item) {
+	      _actionsHomeActions2['default'].vote(item.id);
+	    }
 	  }, {
 	    key: 'onViewClick',
 	    value: function onViewClick(item) {}
@@ -32242,13 +32244,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var sortList = this.state.sortList,
-	          sortListShift = sortList.shift();
+	      var sortList = this.state.sortList.filter(function (item, index) {
+	        return index !== 0 ? item : false;
+	      });
 	      return _react2['default'].createElement(
 	        'div',
 	        { className: 'pas-sortlist' },
-	        _react2['default'].createElement(_SortBannerNodes2['default'], { onActinsClick: this.onActinsClick, onVoteClick: this.onVoteClick.bind(this, sortListShift), onViewClick: this.onViewClick.bind(this, sortListShift), result: sortListShift }),
-	        _react2['default'].createElement(_SortCommWrapNodes2['default'], { onViewClick: this.onViewClick.bind(this), data: sortList })
+	        _react2['default'].createElement(_SortBannerNodes2['default'], { onActinsClick: this.onActinsClick, onVoteClick: this.onVoteClick.bind(this, this.state.sortList[0]), onViewClick: this.onViewClick.bind(this, this.state.sortList[0]), result: this.state.sortList[0] }),
+	        _react2['default'].createElement(_SortCommWrapNodes2['default'], { onVoteClick: this.onVoteClick, data: sortList }),
+	        _react2['default'].createElement(
+	          'section',
+	          { className: 'page-btm1' },
+	          '如果您投票的选手获得',
+	          _react2['default'].createElement(
+	            'span',
+	            { className: 'spec' },
+	            '总决赛冠军'
+	          ),
+	          ',',
+	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement(
+	            'span',
+	            { className: 'spec' },
+	            '1亿万里通积分'
+	          ),
+	          '等您分享！'
+	        ),
+	        _react2['default'].createElement(
+	          'section',
+	          { className: 'page-button' },
+	          _react2['default'].createElement('a', { className: 'icon page-button-next', href: '' }),
+	          _react2['default'].createElement('a', { className: 'icon page-button-return' }),
+	          _react2['default'].createElement('div', { className: 'icon page-flag' })
+	        )
 	      );
 	    }
 	  }]);
@@ -32288,6 +32316,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _actionsHomeActions2 = _interopRequireDefault(_actionsHomeActions);
 	
+	var _actionsSortActions = __webpack_require__(296);
+	
+	var _actionsSortActions2 = _interopRequireDefault(_actionsSortActions);
+	
 	var HomeStore = (function () {
 	  function HomeStore() {
 	    _classCallCheck(this, HomeStore);
@@ -32298,16 +32330,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  _createClass(HomeStore, [{
 	    key: 'onGetSortListSuccess',
-	    value: function onGetSortListSuccess(data) {
-	      this.sortList = data.sort(function (current, next) {
+	    value: function onGetSortListSuccess(list) {
+	      this.sortList = list.sort(function (current, next) {
 	        return next.votes - current.votes;
+	      }).map(function (item, index) {
+	        return _actionsSortActions2['default'].getInfoById(item.id, item.votes);
 	      });
 	    }
 	  }, {
 	    key: 'onGetSortListFail',
 	    value: function onGetSortListFail(errorMessage) {
-	      toastr.error(errorMessage);
+	      console.log(errorMessage);
 	    }
+	  }, {
+	    key: 'onSendScoreSuccess',
+	    value: function onSendScoreSuccess() {}
+	  }, {
+	    key: 'onArgsVerifyFail',
+	    value: function onArgsVerifyFail() {}
+	  }, {
+	    key: 'onSysException',
+	    value: function onSysException() {}
+	  }, {
+	    key: 'onUnlogin',
+	    value: function onUnlogin() {}
+	  }, {
+	    key: 'onYetSentScore',
+	    value: function onYetSentScore() {}
+	  }, {
+	    key: 'onYetOverdue',
+	    value: function onYetOverdue() {}
 	  }]);
 	
 	  return HomeStore;
@@ -33844,90 +33896,99 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _alt2 = _interopRequireDefault(_alt);
 	
+	var _reqwest = __webpack_require__(295);
+	
+	var _reqwest2 = _interopRequireDefault(_reqwest);
+	
 	var HomeActions = (function () {
 	  function HomeActions() {
 	    _classCallCheck(this, HomeActions);
 	
-	    this.generateActions('getSortListSuccess', 'getSortListFail');
+	    this.generateActions('getSortListSuccess', 'getSortListFail', 'sendScoreSuccess', 'argsVerifyFail', 'sysException', 'unLogin', 'yetSentScore', 'yetOverdue');
 	  }
 	
 	  _createClass(HomeActions, [{
 	    key: 'getSortList',
 	    value: function getSortList() {
+	      var _this = this;
 	
-	      this.actions.getSortListSuccess([{
-	        id: 1,
-	        name: '重庆家庭',
-	        votes: '12394',
-	        imgBannerSrc: "/assets/banner/cqjt.png",
-	        imgSrc: "/assets/comm/cqjt.png"
-	      }, {
-	        id: 2,
-	        name: '黑龙江家庭',
-	        votes: '32344',
-	        imgBannerSrc: "/assets/banner/hljjt.png",
-	        imgSrc: "/assets/comm/hljjt.png"
-	      }, {
-	        id: 3,
-	        name: '山西家庭',
-	        votes: '12314',
-	        imgBannerSrc: "/assets/banner/sxjt.png",
-	        imgSrc: "/assets/comm/sxjt.png"
-	      }, {
-	        id: 4,
-	        name: '苏州家庭',
-	        votes: '22334',
-	        imgBannerSrc: "/assets/banner/szjt.png",
-	        imgSrc: "/assets/comm/szjt.png"
-	      }, {
-	        id: 5,
-	        name: '厦门家庭',
-	        votes: '12323',
-	        imgBannerSrc: "/assets/banner/xmjt.png",
-	        imgSrc: "/assets/comm/xmjt.png"
-	      }]);
+	      (0, _reqwest2['default'])({
+	        url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerListInfo.do',
+	        type: 'jsonp'
+	      }).then(function (res) {
+	        !(res.flag - 0) ? _this.actions.getSortListSuccess(res.list) : _this.actions.getSortListFail(res.msg);
+	      }).fail(function () {
+	        _this.actions.getSortListFail("请求失败");
+	      });
 	    }
 	  }, {
 	    key: 'getSortListVote',
 	    value: function getSortListVote() {
 	
-	      this.actions.getSortListSuccess([{
-	        id: 1,
-	        name: '重庆家庭',
-	        votes: '12394',
-	        imgBannerSrc: "/assets/banner/cqjt.png",
-	        imgSrc: "/assets/comm/cqjt.png"
-	      }, {
-	        id: 2,
-	        name: '黑龙江家庭',
-	        votes: '1234422',
-	        imgBannerSrc: "/assets/banner/hljjt.png",
-	        imgSrc: "/assets/comm/hljjt.png"
-	      }, {
-	        id: 3,
-	        name: '山西家庭',
-	        votes: '12314',
-	        imgBannerSrc: "/assets/banner/sxjt.png",
-	        imgSrc: "/assets/comm/sxjt.png"
-	      }, {
-	        id: 4,
-	        name: '苏州家庭',
-	        votes: '22334',
-	        imgBannerSrc: "/assets/banner/szjt.png",
-	        imgSrc: "/assets/comm/szjt.png"
-	      }, {
-	        id: 5,
-	        name: '厦门家庭',
-	        votes: '12323',
-	        imgBannerSrc: "/assets/banner/xmjt.png",
-	        imgSrc: "/assets/comm/xmjt.png"
-	      }]);
+	      this.actions.getSortListSuccess();
+	    }
+	  }, {
+	    key: 'showDialog',
+	    value: function showDialog(type) {
+	      console.dir(type);
 	    }
 	  }, {
 	    key: 'vote',
 	    value: function vote(sortId) {
+	      var _this2 = this;
 	
-	      this.actions.getSortListVote();
+	      var flagsTemp = [{
+	        flag: 0,
+	        callback: function callback() {
+	          this.actions.sendScoreSuccess();
+	          this.actions.showDialog('sendScoreSuccess');
+	        }
+	      }, {
+	        flag: 1,
+	        callback: function callback() {
+	          this.actions.argsVerifyFail();
+	          this.actions.showDialog('argsVerifyFail');
+	        }
+	      }, {
+	        flag: 2,
+	        callback: function callback() {
+	          this.actions.unLogin();
+	          this.actions.showDialog('unLogin');
+	        }
+	      }, {
+	        flag: -1,
+	        callback: function callback() {
+	          this.actions.sysException();
+	          this.actions.showDialog('sysException');
+	        }
+	      }, {
+	        flag: 4,
+	        callback: function callback() {
+	          this.actions.yetSentScore();
+	          this.actions.showDialog('yetSentScore');
+	        }
+	      }, {
+	        flag: 5,
+	        callback: function callback() {
+	          this.actions.yetOverdue();
+	          this.actions.showDialog('yetOverdue');
+	        }
+	      }];
+	      (0, _reqwest2['default'])({
+	        url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerVote.do',
+	        type: 'jsonp',
+	        data: {
+	          activeType: "2030",
+	          answerResult: sortId,
+	          source: "app"
+	        }
+	      }).then(function (res) {
+	        flagsTemp.forEach(function (item, index) {
+	          item.flag == res.flag ? item.callback.bind(_this2)() : false;
+	        });
+	      }).fail(function () {
+	        console.log("请求失败");
+	      });
 	    }
 	  }]);
 	
@@ -33942,6 +34003,740 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  * Reqwest! A general purpose XHR connection manager
+	  * license MIT (c) Dustin Diaz 2015
+	  * https://github.com/ded/reqwest
+	  */
+	
+	!function (name, context, definition) {
+	  if (typeof module != 'undefined' && module.exports) module.exports = definition()
+	  else if (true) !(__WEBPACK_AMD_DEFINE_FACTORY__ = (definition), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+	  else context[name] = definition()
+	}('reqwest', this, function () {
+	
+	  var context = this
+	
+	  if ('window' in context) {
+	    var doc = document
+	      , byTag = 'getElementsByTagName'
+	      , head = doc[byTag]('head')[0]
+	  } else {
+	    var XHR2
+	    try {
+	      XHR2 = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"xhr2\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+	    } catch (ex) {
+	      throw new Error('Peer dependency `xhr2` required! Please npm install xhr2')
+	    }
+	  }
+	
+	
+	  var httpsRe = /^http/
+	    , protocolRe = /(^\w+):\/\//
+	    , twoHundo = /^(20\d|1223)$/ //http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
+	    , readyState = 'readyState'
+	    , contentType = 'Content-Type'
+	    , requestedWith = 'X-Requested-With'
+	    , uniqid = 0
+	    , callbackPrefix = 'reqwest_' + (+new Date())
+	    , lastValue // data stored by the most recent JSONP callback
+	    , xmlHttpRequest = 'XMLHttpRequest'
+	    , xDomainRequest = 'XDomainRequest'
+	    , noop = function () {}
+	
+	    , isArray = typeof Array.isArray == 'function'
+	        ? Array.isArray
+	        : function (a) {
+	            return a instanceof Array
+	          }
+	
+	    , defaultHeaders = {
+	          'contentType': 'application/x-www-form-urlencoded'
+	        , 'requestedWith': xmlHttpRequest
+	        , 'accept': {
+	              '*':  'text/javascript, text/html, application/xml, text/xml, */*'
+	            , 'xml':  'application/xml, text/xml'
+	            , 'html': 'text/html'
+	            , 'text': 'text/plain'
+	            , 'json': 'application/json, text/javascript'
+	            , 'js':   'application/javascript, text/javascript'
+	          }
+	      }
+	
+	    , xhr = function(o) {
+	        // is it x-domain
+	        if (o['crossOrigin'] === true) {
+	          var xhr = context[xmlHttpRequest] ? new XMLHttpRequest() : null
+	          if (xhr && 'withCredentials' in xhr) {
+	            return xhr
+	          } else if (context[xDomainRequest]) {
+	            return new XDomainRequest()
+	          } else {
+	            throw new Error('Browser does not support cross-origin requests')
+	          }
+	        } else if (context[xmlHttpRequest]) {
+	          return new XMLHttpRequest()
+	        } else if (XHR2) {
+	          return new XHR2()
+	        } else {
+	          return new ActiveXObject('Microsoft.XMLHTTP')
+	        }
+	      }
+	    , globalSetupOptions = {
+	        dataFilter: function (data) {
+	          return data
+	        }
+	      }
+	
+	  function succeed(r) {
+	    var protocol = protocolRe.exec(r.url)
+	    protocol = (protocol && protocol[1]) || context.location.protocol
+	    return httpsRe.test(protocol) ? twoHundo.test(r.request.status) : !!r.request.response
+	  }
+	
+	  function handleReadyState(r, success, error) {
+	    return function () {
+	      // use _aborted to mitigate against IE err c00c023f
+	      // (can't read props on aborted request objects)
+	      if (r._aborted) return error(r.request)
+	      if (r._timedOut) return error(r.request, 'Request is aborted: timeout')
+	      if (r.request && r.request[readyState] == 4) {
+	        r.request.onreadystatechange = noop
+	        if (succeed(r)) success(r.request)
+	        else
+	          error(r.request)
+	      }
+	    }
+	  }
+	
+	  function setHeaders(http, o) {
+	    var headers = o['headers'] || {}
+	      , h
+	
+	    headers['Accept'] = headers['Accept']
+	      || defaultHeaders['accept'][o['type']]
+	      || defaultHeaders['accept']['*']
+	
+	    var isAFormData = typeof FormData === 'function' && (o['data'] instanceof FormData);
+	    // breaks cross-origin requests with legacy browsers
+	    if (!o['crossOrigin'] && !headers[requestedWith]) headers[requestedWith] = defaultHeaders['requestedWith']
+	    if (!headers[contentType] && !isAFormData) headers[contentType] = o['contentType'] || defaultHeaders['contentType']
+	    for (h in headers)
+	      headers.hasOwnProperty(h) && 'setRequestHeader' in http && http.setRequestHeader(h, headers[h])
+	  }
+	
+	  function setCredentials(http, o) {
+	    if (typeof o['withCredentials'] !== 'undefined' && typeof http.withCredentials !== 'undefined') {
+	      http.withCredentials = !!o['withCredentials']
+	    }
+	  }
+	
+	  function generalCallback(data) {
+	    lastValue = data
+	  }
+	
+	  function urlappend (url, s) {
+	    return url + (/\?/.test(url) ? '&' : '?') + s
+	  }
+	
+	  function handleJsonp(o, fn, err, url) {
+	    var reqId = uniqid++
+	      , cbkey = o['jsonpCallback'] || 'callback' // the 'callback' key
+	      , cbval = o['jsonpCallbackName'] || reqwest.getcallbackPrefix(reqId)
+	      , cbreg = new RegExp('((^|\\?|&)' + cbkey + ')=([^&]+)')
+	      , match = url.match(cbreg)
+	      , script = doc.createElement('script')
+	      , loaded = 0
+	      , isIE10 = navigator.userAgent.indexOf('MSIE 10.0') !== -1
+	
+	    if (match) {
+	      if (match[3] === '?') {
+	        url = url.replace(cbreg, '$1=' + cbval) // wildcard callback func name
+	      } else {
+	        cbval = match[3] // provided callback func name
+	      }
+	    } else {
+	      url = urlappend(url, cbkey + '=' + cbval) // no callback details, add 'em
+	    }
+	
+	    context[cbval] = generalCallback
+	
+	    script.type = 'text/javascript'
+	    script.src = url
+	    script.async = true
+	    if (typeof script.onreadystatechange !== 'undefined' && !isIE10) {
+	      // need this for IE due to out-of-order onreadystatechange(), binding script
+	      // execution to an event listener gives us control over when the script
+	      // is executed. See http://jaubourg.net/2010/07/loading-script-as-onclick-handler-of.html
+	      script.htmlFor = script.id = '_reqwest_' + reqId
+	    }
+	
+	    script.onload = script.onreadystatechange = function () {
+	      if ((script[readyState] && script[readyState] !== 'complete' && script[readyState] !== 'loaded') || loaded) {
+	        return false
+	      }
+	      script.onload = script.onreadystatechange = null
+	      script.onclick && script.onclick()
+	      // Call the user callback with the last value stored and clean up values and scripts.
+	      fn(lastValue)
+	      lastValue = undefined
+	      head.removeChild(script)
+	      loaded = 1
+	    }
+	
+	    // Add the script to the DOM head
+	    head.appendChild(script)
+	
+	    // Enable JSONP timeout
+	    return {
+	      abort: function () {
+	        script.onload = script.onreadystatechange = null
+	        err({}, 'Request is aborted: timeout', {})
+	        lastValue = undefined
+	        head.removeChild(script)
+	        loaded = 1
+	      }
+	    }
+	  }
+	
+	  function getRequest(fn, err) {
+	    var o = this.o
+	      , method = (o['method'] || 'GET').toUpperCase()
+	      , url = typeof o === 'string' ? o : o['url']
+	      // convert non-string objects to query-string form unless o['processData'] is false
+	      , data = (o['processData'] !== false && o['data'] && typeof o['data'] !== 'string')
+	        ? reqwest.toQueryString(o['data'])
+	        : (o['data'] || null)
+	      , http
+	      , sendWait = false
+	
+	    // if we're working on a GET request and we have data then we should append
+	    // query string to end of URL and not post data
+	    if ((o['type'] == 'jsonp' || method == 'GET') && data) {
+	      url = urlappend(url, data)
+	      data = null
+	    }
+	
+	    if (o['type'] == 'jsonp') return handleJsonp(o, fn, err, url)
+	
+	    // get the xhr from the factory if passed
+	    // if the factory returns null, fall-back to ours
+	    http = (o.xhr && o.xhr(o)) || xhr(o)
+	
+	    http.open(method, url, o['async'] === false ? false : true)
+	    setHeaders(http, o)
+	    setCredentials(http, o)
+	    if (context[xDomainRequest] && http instanceof context[xDomainRequest]) {
+	        http.onload = fn
+	        http.onerror = err
+	        // NOTE: see
+	        // http://social.msdn.microsoft.com/Forums/en-US/iewebdevelopment/thread/30ef3add-767c-4436-b8a9-f1ca19b4812e
+	        http.onprogress = function() {}
+	        sendWait = true
+	    } else {
+	      http.onreadystatechange = handleReadyState(this, fn, err)
+	    }
+	    o['before'] && o['before'](http)
+	    if (sendWait) {
+	      setTimeout(function () {
+	        http.send(data)
+	      }, 200)
+	    } else {
+	      http.send(data)
+	    }
+	    return http
+	  }
+	
+	  function Reqwest(o, fn) {
+	    this.o = o
+	    this.fn = fn
+	
+	    init.apply(this, arguments)
+	  }
+	
+	  function setType(header) {
+	    // json, javascript, text/plain, text/html, xml
+	    if (header.match('json')) return 'json'
+	    if (header.match('javascript')) return 'js'
+	    if (header.match('text')) return 'html'
+	    if (header.match('xml')) return 'xml'
+	  }
+	
+	  function init(o, fn) {
+	
+	    this.url = typeof o == 'string' ? o : o['url']
+	    this.timeout = null
+	
+	    // whether request has been fulfilled for purpose
+	    // of tracking the Promises
+	    this._fulfilled = false
+	    // success handlers
+	    this._successHandler = function(){}
+	    this._fulfillmentHandlers = []
+	    // error handlers
+	    this._errorHandlers = []
+	    // complete (both success and fail) handlers
+	    this._completeHandlers = []
+	    this._erred = false
+	    this._responseArgs = {}
+	
+	    var self = this
+	
+	    fn = fn || function () {}
+	
+	    if (o['timeout']) {
+	      this.timeout = setTimeout(function () {
+	        timedOut()
+	      }, o['timeout'])
+	    }
+	
+	    if (o['success']) {
+	      this._successHandler = function () {
+	        o['success'].apply(o, arguments)
+	      }
+	    }
+	
+	    if (o['error']) {
+	      this._errorHandlers.push(function () {
+	        o['error'].apply(o, arguments)
+	      })
+	    }
+	
+	    if (o['complete']) {
+	      this._completeHandlers.push(function () {
+	        o['complete'].apply(o, arguments)
+	      })
+	    }
+	
+	    function complete (resp) {
+	      o['timeout'] && clearTimeout(self.timeout)
+	      self.timeout = null
+	      while (self._completeHandlers.length > 0) {
+	        self._completeHandlers.shift()(resp)
+	      }
+	    }
+	
+	    function success (resp) {
+	      var type = o['type'] || resp && setType(resp.getResponseHeader('Content-Type')) // resp can be undefined in IE
+	      resp = (type !== 'jsonp') ? self.request : resp
+	      // use global data filter on response text
+	      var filteredResponse = globalSetupOptions.dataFilter(resp.responseText, type)
+	        , r = filteredResponse
+	      try {
+	        resp.responseText = r
+	      } catch (e) {
+	        // can't assign this in IE<=8, just ignore
+	      }
+	      if (r) {
+	        switch (type) {
+	        case 'json':
+	          try {
+	            resp = context.JSON ? context.JSON.parse(r) : eval('(' + r + ')')
+	          } catch (err) {
+	            return error(resp, 'Could not parse JSON in response', err)
+	          }
+	          break
+	        case 'js':
+	          resp = eval(r)
+	          break
+	        case 'html':
+	          resp = r
+	          break
+	        case 'xml':
+	          resp = resp.responseXML
+	              && resp.responseXML.parseError // IE trololo
+	              && resp.responseXML.parseError.errorCode
+	              && resp.responseXML.parseError.reason
+	            ? null
+	            : resp.responseXML
+	          break
+	        }
+	      }
+	
+	      self._responseArgs.resp = resp
+	      self._fulfilled = true
+	      fn(resp)
+	      self._successHandler(resp)
+	      while (self._fulfillmentHandlers.length > 0) {
+	        resp = self._fulfillmentHandlers.shift()(resp)
+	      }
+	
+	      complete(resp)
+	    }
+	
+	    function timedOut() {
+	      self._timedOut = true
+	      self.request.abort()
+	    }
+	
+	    function error(resp, msg, t) {
+	      resp = self.request
+	      self._responseArgs.resp = resp
+	      self._responseArgs.msg = msg
+	      self._responseArgs.t = t
+	      self._erred = true
+	      while (self._errorHandlers.length > 0) {
+	        self._errorHandlers.shift()(resp, msg, t)
+	      }
+	      complete(resp)
+	    }
+	
+	    this.request = getRequest.call(this, success, error)
+	  }
+	
+	  Reqwest.prototype = {
+	    abort: function () {
+	      this._aborted = true
+	      this.request.abort()
+	    }
+	
+	  , retry: function () {
+	      init.call(this, this.o, this.fn)
+	    }
+	
+	    /**
+	     * Small deviation from the Promises A CommonJs specification
+	     * http://wiki.commonjs.org/wiki/Promises/A
+	     */
+	
+	    /**
+	     * `then` will execute upon successful requests
+	     */
+	  , then: function (success, fail) {
+	      success = success || function () {}
+	      fail = fail || function () {}
+	      if (this._fulfilled) {
+	        this._responseArgs.resp = success(this._responseArgs.resp)
+	      } else if (this._erred) {
+	        fail(this._responseArgs.resp, this._responseArgs.msg, this._responseArgs.t)
+	      } else {
+	        this._fulfillmentHandlers.push(success)
+	        this._errorHandlers.push(fail)
+	      }
+	      return this
+	    }
+	
+	    /**
+	     * `always` will execute whether the request succeeds or fails
+	     */
+	  , always: function (fn) {
+	      if (this._fulfilled || this._erred) {
+	        fn(this._responseArgs.resp)
+	      } else {
+	        this._completeHandlers.push(fn)
+	      }
+	      return this
+	    }
+	
+	    /**
+	     * `fail` will execute when the request fails
+	     */
+	  , fail: function (fn) {
+	      if (this._erred) {
+	        fn(this._responseArgs.resp, this._responseArgs.msg, this._responseArgs.t)
+	      } else {
+	        this._errorHandlers.push(fn)
+	      }
+	      return this
+	    }
+	  , 'catch': function (fn) {
+	      return this.fail(fn)
+	    }
+	  }
+	
+	  function reqwest(o, fn) {
+	    return new Reqwest(o, fn)
+	  }
+	
+	  // normalize newline variants according to spec -> CRLF
+	  function normalize(s) {
+	    return s ? s.replace(/\r?\n/g, '\r\n') : ''
+	  }
+	
+	  function serial(el, cb) {
+	    var n = el.name
+	      , t = el.tagName.toLowerCase()
+	      , optCb = function (o) {
+	          // IE gives value="" even where there is no value attribute
+	          // 'specified' ref: http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-862529273
+	          if (o && !o['disabled'])
+	            cb(n, normalize(o['attributes']['value'] && o['attributes']['value']['specified'] ? o['value'] : o['text']))
+	        }
+	      , ch, ra, val, i
+	
+	    // don't serialize elements that are disabled or without a name
+	    if (el.disabled || !n) return
+	
+	    switch (t) {
+	    case 'input':
+	      if (!/reset|button|image|file/i.test(el.type)) {
+	        ch = /checkbox/i.test(el.type)
+	        ra = /radio/i.test(el.type)
+	        val = el.value
+	        // WebKit gives us "" instead of "on" if a checkbox has no value, so correct it here
+	        ;(!(ch || ra) || el.checked) && cb(n, normalize(ch && val === '' ? 'on' : val))
+	      }
+	      break
+	    case 'textarea':
+	      cb(n, normalize(el.value))
+	      break
+	    case 'select':
+	      if (el.type.toLowerCase() === 'select-one') {
+	        optCb(el.selectedIndex >= 0 ? el.options[el.selectedIndex] : null)
+	      } else {
+	        for (i = 0; el.length && i < el.length; i++) {
+	          el.options[i].selected && optCb(el.options[i])
+	        }
+	      }
+	      break
+	    }
+	  }
+	
+	  // collect up all form elements found from the passed argument elements all
+	  // the way down to child elements; pass a '<form>' or form fields.
+	  // called with 'this'=callback to use for serial() on each element
+	  function eachFormElement() {
+	    var cb = this
+	      , e, i
+	      , serializeSubtags = function (e, tags) {
+	          var i, j, fa
+	          for (i = 0; i < tags.length; i++) {
+	            fa = e[byTag](tags[i])
+	            for (j = 0; j < fa.length; j++) serial(fa[j], cb)
+	          }
+	        }
+	
+	    for (i = 0; i < arguments.length; i++) {
+	      e = arguments[i]
+	      if (/input|select|textarea/i.test(e.tagName)) serial(e, cb)
+	      serializeSubtags(e, [ 'input', 'select', 'textarea' ])
+	    }
+	  }
+	
+	  // standard query string style serialization
+	  function serializeQueryString() {
+	    return reqwest.toQueryString(reqwest.serializeArray.apply(null, arguments))
+	  }
+	
+	  // { 'name': 'value', ... } style serialization
+	  function serializeHash() {
+	    var hash = {}
+	    eachFormElement.apply(function (name, value) {
+	      if (name in hash) {
+	        hash[name] && !isArray(hash[name]) && (hash[name] = [hash[name]])
+	        hash[name].push(value)
+	      } else hash[name] = value
+	    }, arguments)
+	    return hash
+	  }
+	
+	  // [ { name: 'name', value: 'value' }, ... ] style serialization
+	  reqwest.serializeArray = function () {
+	    var arr = []
+	    eachFormElement.apply(function (name, value) {
+	      arr.push({name: name, value: value})
+	    }, arguments)
+	    return arr
+	  }
+	
+	  reqwest.serialize = function () {
+	    if (arguments.length === 0) return ''
+	    var opt, fn
+	      , args = Array.prototype.slice.call(arguments, 0)
+	
+	    opt = args.pop()
+	    opt && opt.nodeType && args.push(opt) && (opt = null)
+	    opt && (opt = opt.type)
+	
+	    if (opt == 'map') fn = serializeHash
+	    else if (opt == 'array') fn = reqwest.serializeArray
+	    else fn = serializeQueryString
+	
+	    return fn.apply(null, args)
+	  }
+	
+	  reqwest.toQueryString = function (o, trad) {
+	    var prefix, i
+	      , traditional = trad || false
+	      , s = []
+	      , enc = encodeURIComponent
+	      , add = function (key, value) {
+	          // If value is a function, invoke it and return its value
+	          value = ('function' === typeof value) ? value() : (value == null ? '' : value)
+	          s[s.length] = enc(key) + '=' + enc(value)
+	        }
+	    // If an array was passed in, assume that it is an array of form elements.
+	    if (isArray(o)) {
+	      for (i = 0; o && i < o.length; i++) add(o[i]['name'], o[i]['value'])
+	    } else {
+	      // If traditional, encode the "old" way (the way 1.3.2 or older
+	      // did it), otherwise encode params recursively.
+	      for (prefix in o) {
+	        if (o.hasOwnProperty(prefix)) buildParams(prefix, o[prefix], traditional, add)
+	      }
+	    }
+	
+	    // spaces should be + according to spec
+	    return s.join('&').replace(/%20/g, '+')
+	  }
+	
+	  function buildParams(prefix, obj, traditional, add) {
+	    var name, i, v
+	      , rbracket = /\[\]$/
+	
+	    if (isArray(obj)) {
+	      // Serialize array item.
+	      for (i = 0; obj && i < obj.length; i++) {
+	        v = obj[i]
+	        if (traditional || rbracket.test(prefix)) {
+	          // Treat each array item as a scalar.
+	          add(prefix, v)
+	        } else {
+	          buildParams(prefix + '[' + (typeof v === 'object' ? i : '') + ']', v, traditional, add)
+	        }
+	      }
+	    } else if (obj && obj.toString() === '[object Object]') {
+	      // Serialize object item.
+	      for (name in obj) {
+	        buildParams(prefix + '[' + name + ']', obj[name], traditional, add)
+	      }
+	
+	    } else {
+	      // Serialize scalar item.
+	      add(prefix, obj)
+	    }
+	  }
+	
+	  reqwest.getcallbackPrefix = function () {
+	    return callbackPrefix
+	  }
+	
+	  // jQuery and Zepto compatibility, differences can be remapped here so you can call
+	  // .ajax.compat(options, callback)
+	  reqwest.compat = function (o, fn) {
+	    if (o) {
+	      o['type'] && (o['method'] = o['type']) && delete o['type']
+	      o['dataType'] && (o['type'] = o['dataType'])
+	      o['jsonpCallback'] && (o['jsonpCallbackName'] = o['jsonpCallback']) && delete o['jsonpCallback']
+	      o['jsonp'] && (o['jsonpCallback'] = o['jsonp'])
+	    }
+	    return new Reqwest(o, fn)
+	  }
+	
+	  reqwest.ajaxSetup = function (options) {
+	    options = options || {}
+	    for (var k in options) {
+	      globalSetupOptions[k] = options[k]
+	    }
+	  }
+	
+	  return reqwest
+	});
+
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(266), RootInstanceProvider = __webpack_require__(264), ReactMount = __webpack_require__(138), React = __webpack_require__(73); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _dataJson = __webpack_require__(297);
+	
+	var _dataJson2 = _interopRequireDefault(_dataJson);
+	
+	function getInfoById(id, votes) {
+	  return _dataJson2['default'].sortList.filter(function (item) {
+	    return id == item.id ? (function () {
+	      item.votes = votes;
+	      return item;
+	    })() : false;
+	  })[0];
+	}
+	
+	exports['default'] = {
+	  getInfoById: getInfoById
+	};
+	module.exports = exports['default'];
+	
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(276), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(73))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "SortActions.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
+
+/***/ },
+/* 297 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"sortList": [
+			{
+				"id": 1001,
+				"name": "魔术之家",
+				"memberInfo": "王瑞雅、爸爸、表姐、弟弟",
+				"joinManifesto": "相伴成长，共筑理想。创意才艺，共创..",
+				"joinArea": "重庆",
+				"promotionArea": "中区",
+				"imgBannerSrc": "/assets/banner/cqjt.png",
+				"imgSrc": "/assets/comm/cqjt.png",
+				"profileImgSrc": "/assets/profile/cqjt.png"
+			},
+			{
+				"id": 1002,
+				"name": "冰城Q宝",
+				"memberInfo": "于和皓喆、爸爸于洋、妈妈李海蛟",
+				"joinManifesto": "QQ棒QQ强，QQ配音最闪亮",
+				"joinArea": "哈尔滨",
+				"promotionArea": "北区",
+				"imgBannerSrc": "/assets/banner/hljjt.png",
+				"imgSrc": "/assets/comm/hljjt.png",
+				"profileImgSrc": "/assets/profile/hljjt.png"
+			},
+			{
+				"id": 1003,
+				"name": "魔幻舞团",
+				"memberInfo": "儿子、女儿、爸爸、妈妈",
+				"joinManifesto": "舞动新节奏，happy伐木累！",
+				"joinArea": "山西",
+				"promotionArea": "中西区",
+				"imgBannerSrc": "/assets/banner/sxjt.png",
+				"imgSrc": "/assets/comm/sxjt.png",
+				"profileImgSrc": "/assets/profile/sxjt.png"
+			},
+			{
+				"id": 1004,
+				"name": "开心满屋",
+				"memberInfo": "卓悦瑶、妈妈、爸爸",
+				"joinManifesto": "悦瑶悦瑶，聪颖灵巧；喜弄车鼓，看我悦瑶！",
+				"joinArea": " 厦门",
+				"promotionArea": "南区",
+				"imgBannerSrc": "/assets/banner/szjt.png",
+				"imgSrc": "/assets/comm/szjt.png",
+				"profileImgSrc": "/assets/profile/szjt.png"
+			},
+			{
+				"id": 1005,
+				"name": " 江南之音",
+				"memberInfo": " 孙天禹、妈妈、阿姨",
+				"joinManifesto": "天禹天禹，谁与争锋",
+				"joinArea": "苏州",
+				"promotionArea": "东区",
+				"imgBannerSrc": "/assets/banner/xmjt.png",
+				"imgSrc": "/assets/comm/xmjt.png",
+				"profileImgSrc": "/assets/profile/xmjt.png"
+			}
+		]
+	}
+
+/***/ },
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(266), RootInstanceProvider = __webpack_require__(264), ReactMount = __webpack_require__(138), React = __webpack_require__(73); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
@@ -33968,7 +34763,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _reactRouter = __webpack_require__(69);
 	
-	var _Dialog = __webpack_require__(296);
+	var _Dialog = __webpack_require__(299);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
@@ -34032,7 +34827,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'active-btn' },
-	            _react2['default'].createElement(_reactRouter.Link, { className: 'icon active-btn-view', to: "/profile/" + this.props.result.id, href: 'javascript:void(0)' }),
+	            _react2['default'].createElement(_reactRouter.Link, { className: 'icon active-btn-view', to: "/profile/" + this.props.result.id + '?votes=' + this.props.result.votes, href: 'javascript:void(0)' }),
 	            _react2['default'].createElement('a', { className: 'icon active-btn-vote', onClick: this.props.onVoteClick, href: 'javascript:void(0)' })
 	          )
 	        ),
@@ -34051,7 +34846,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
 
 /***/ },
-/* 296 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(266), RootInstanceProvider = __webpack_require__(264), ReactMount = __webpack_require__(138), React = __webpack_require__(73); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
@@ -34090,26 +34885,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function render() {
 	      var props = this.props,
 	          visible = props.visible,
+	          context = props.context,
 	          classNames = ["pas-dialog"];
-	      if (!visible) {
-	        classNames.push('pas-dialog-hidden');
-	      }
-	      var templets = [{
-	        type: 'voteFinish',
-	        content: '投票完成'
-	      }, {
-	        type: 'voteSuccess',
-	        content: '投票成功'
-	      }, {
-	        type: 'actOver',
-	        content: '活动结束'
-	      }, {
-	        type: 'actIns',
-	        content: '活动介绍'
-	      }];
-	      var content = templets.filter(function (item) {
-	        return item.type == props.type;
-	      })[0].content;
+	
+	      !visible ? classNames.push('pas-dialog-hidden') : false;
 	      return _react2['default'].createElement(
 	        'div',
 	        { className: classNames.join(" ") },
@@ -34129,7 +34908,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _react2['default'].createElement(
 	              'div',
 	              { className: 'mv-word' },
-	              content
+	              context
 	            )
 	          )
 	        )
@@ -34147,7 +34926,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
 
 /***/ },
-/* 297 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(266), RootInstanceProvider = __webpack_require__(264), ReactMount = __webpack_require__(138), React = __webpack_require__(73); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
@@ -34172,7 +34951,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SortCommNodes = __webpack_require__(298);
+	var _SortCommNodes = __webpack_require__(301);
 	
 	var _SortCommNodes2 = _interopRequireDefault(_SortCommNodes);
 	
@@ -34188,7 +34967,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(SortCommWarpNodes, [{
 	    key: 'render',
 	    value: function render() {
-	      var onViewClick = this.props.onViewClick;
+	      var _this = this;
+	
+	      var voteClick = this.props.onVoteClick;
 	      return _react2['default'].createElement(
 	        'section',
 	        { className: 'page-list' },
@@ -34196,7 +34977,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          'ul',
 	          { className: 'page-list-ul clearfloat' },
 	          this.props.data.map(function (item, index) {
-	            return _react2['default'].createElement(_SortCommNodes2['default'], { data: item, onViewClick: onViewClick, index: index + 2 });
+	            return _react2['default'].createElement(_SortCommNodes2['default'], { onVoteClick: voteClick.bind(_this, item), imgSrc: item.imgSrc, votes: item.votes, id: item.id, index: index + 2 });
 	          })
 	        )
 	      );
@@ -34213,7 +34994,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
 
 /***/ },
-/* 298 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(266), RootInstanceProvider = __webpack_require__(264), ReactMount = __webpack_require__(138), React = __webpack_require__(73); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
@@ -34252,14 +35033,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(SortCommNodes, [{
 	    key: 'render',
 	    value: function render() {
+	      var commStyle = {
+	        backgroundImage: 'url(' + this.props.imgSrc + ')',
+	        backgroundRepeat: 'no-repeat',
+	        backgroundSize: '100%'
+	      };
+	      var imgStyle = {
+	        visibility: 'hidden'
+	      };
 	      return _react2['default'].createElement(
 	        'li',
 	        null,
 	        _react2['default'].createElement(
 	          'div',
 	          { className: 'list-ul-div' },
-	          _react2['default'].createElement('img', { src: this.props.data.imgSrc, alt: 'placeholder+image' }),
-	          _react2['default'].createElement('div', { className: 'imgbg' }),
+	          _react2['default'].createElement('img', { src: this.props.imgSrc, style: imgStyle, alt: 'placeholder+image' }),
+	          _react2['default'].createElement('div', { className: 'imgbg', style: commStyle }),
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'subimgno' },
@@ -34268,14 +35057,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'note' },
-	            this.props.data.votes,
+	            this.props.votes,
 	            '票'
 	          ),
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'li-btn' },
-	            _react2['default'].createElement(_reactRouter.Link, { className: 'icon active-btn-view', to: "/profile/" + this.props.data.id }),
-	            _react2['default'].createElement('a', { className: 'icon active-btn-vote' })
+	            _react2['default'].createElement(_reactRouter.Link, { className: 'icon active-btn-view', to: "/profile/" + this.props.id + "?votes=" + this.props.votes }),
+	            _react2['default'].createElement('a', { className: 'icon active-btn-vote', onClick: this.props.onVoteClick })
 	          )
 	        )
 	      );
@@ -34292,7 +35081,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
 
 /***/ },
-/* 299 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(266), RootInstanceProvider = __webpack_require__(264), ReactMount = __webpack_require__(138), React = __webpack_require__(73); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
@@ -34353,7 +35142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
 
 /***/ },
-/* 300 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(266), RootInstanceProvider = __webpack_require__(264), ReactMount = __webpack_require__(138), React = __webpack_require__(73); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
@@ -34380,11 +35169,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _reactRouter = __webpack_require__(69);
 	
-	var _storesProfileStore = __webpack_require__(301);
+	var _storesProfileStore = __webpack_require__(304);
 	
 	var _storesProfileStore2 = _interopRequireDefault(_storesProfileStore);
 	
-	var _actionsProfileActions = __webpack_require__(302);
+	var _actionsProfileActions = __webpack_require__(305);
 	
 	var _actionsProfileActions2 = _interopRequireDefault(_actionsProfileActions);
 	
@@ -34395,7 +35184,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _classCallCheck(this, Profile);
 	
 	    _get(Object.getPrototypeOf(Profile.prototype), 'constructor', this).call(this, props);
-	    this.state = _storesProfileStore2['default'].getState(context.router.getCurrentParams().id);
+	    this.state = _storesProfileStore2['default'].getState();
+	    this.state.paramsId = context.router.getCurrentParams().id;
+	    this.state.votes = context.router.getCurrentQuery().votes;
 	    this.onChange = this.onChange.bind(this);
 	  }
 	
@@ -34403,7 +35194,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      _storesProfileStore2['default'].listen(this.onChange);
-	      _actionsProfileActions2['default'].getProfileInfo();
+	      _actionsProfileActions2['default'].getProfileInfo(this.state.paramsId);
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
@@ -34448,12 +35239,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'show' },
-	            _react2['default'].createElement('img', { src: '/assets/show_img1.png', alt: '' })
+	            _react2['default'].createElement('img', { src: this.state.profileInfo.profileImgSrc, alt: '' })
 	          ),
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'title' },
-	            _react2['default'].createElement('img', { src: '/assets/title_1.png', alt: '' })
+	            this.state.profileInfo.name
 	          ),
 	          _react2['default'].createElement(
 	            'div',
@@ -34478,7 +35269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  null,
 	                  '成员信息：'
 	                ),
-	                '小虎、小龙、小虎妈妈'
+	                this.state.profileInfo.memberInfo
 	              ),
 	              _react2['default'].createElement(
 	                'li',
@@ -34488,7 +35279,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  null,
 	                  '参赛宣言：'
 	                ),
-	                '我们是相亲相爱一家人！'
+	                this.state.profileInfo.joinManifesto
 	              ),
 	              _react2['default'].createElement(
 	                'li',
@@ -34498,7 +35289,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  null,
 	                  '参赛地区：'
 	                ),
-	                '参赛地区：'
+	                this.state.profileInfo.joinArea
 	              ),
 	              _react2['default'].createElement(
 	                'li',
@@ -34508,7 +35299,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  null,
 	                  '晋级赛区：'
 	                ),
-	                '哈尔滨'
+	                this.state.profileInfo.promotionArea
 	              ),
 	              _react2['default'].createElement(
 	                'li',
@@ -34518,7 +35309,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  null,
 	                  '票数：'
 	                ),
-	                '12345'
+	                this.state.votes
 	              )
 	            )
 	          ),
@@ -34565,7 +35356,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
 
 /***/ },
-/* 301 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(266), RootInstanceProvider = __webpack_require__(264), ReactMount = __webpack_require__(138), React = __webpack_require__(73); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
@@ -34586,24 +35377,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _alt2 = _interopRequireDefault(_alt);
 	
-	var _actionsProfileActions = __webpack_require__(302);
+	var _actionsProfileActions = __webpack_require__(305);
 	
 	var _actionsProfileActions2 = _interopRequireDefault(_actionsProfileActions);
+	
+	var _dataJson = __webpack_require__(297);
+	
+	var _dataJson2 = _interopRequireDefault(_dataJson);
 	
 	var ProfileStore = (function () {
 	  function ProfileStore() {
 	    _classCallCheck(this, ProfileStore);
 	
 	    this.bindActions(_actionsProfileActions2['default']);
+	    this.profileInfo = {};
 	  }
 	
 	  _createClass(ProfileStore, [{
-	    key: 'onGetSortListSuccess',
-	    value: function onGetSortListSuccess(data) {}
-	  }, {
-	    key: 'onGetSortListFail',
-	    value: function onGetSortListFail(errorMessage) {
-	      toastr.error(errorMessage);
+	    key: 'onGetProfileInfoById',
+	    value: function onGetProfileInfoById(id) {
+	      this.profileInfo = _dataJson2['default'].sortList.filter(function (item, index) {
+	        return item.id == id;
+	      }).shift();
 	    }
 	  }]);
 	
@@ -34617,7 +35412,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
 
 /***/ },
-/* 302 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(266), RootInstanceProvider = __webpack_require__(264), ReactMount = __webpack_require__(138), React = __webpack_require__(73); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
@@ -34638,33 +35433,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _alt2 = _interopRequireDefault(_alt);
 	
-	var _dataJson = __webpack_require__(303);
-	
-	var _dataJson2 = _interopRequireDefault(_dataJson);
-	
 	var ProfileActions = (function () {
 	  function ProfileActions() {
 	    _classCallCheck(this, ProfileActions);
 	
-	    this.generateActions('getProfileInfoSuccess', 'getProfileInfoFail');
+	    this.generateActions('getProfileInfoById');
 	  }
 	
 	  _createClass(ProfileActions, [{
 	    key: 'getProfileInfo',
-	    value: function getProfileInfo() {
-	      console.dir(_dataJson2['default']);
-	      this.actions.getProfileInfoById();
-	    }
-	  }, {
-	    key: 'getSortListVote',
-	    value: function getSortListVote() {
-	
-	      this.actions.getSortListSuccess();
+	    value: function getProfileInfo(id) {
+	      this.actions.getProfileInfoById(id);
 	    }
 	  }, {
 	    key: 'vote',
 	    value: function vote(sortId) {
-	
 	      this.actions.getSortListVote();
 	    }
 	  }]);
@@ -34679,51 +35462,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module)))
 
 /***/ },
-/* 303 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"sortList": [
-			{
-				"id": 1,
-				"name": "重庆家庭",
-				"votes": "12394",
-				"imgBannerSrc": "/assets/banner/cqjt.png",
-				"imgSrc": "/assets/comm/cqjt.png"
-			},
-			{
-				"id": 2,
-				"name": "黑龙江家庭",
-				"votes": "32344",
-				"imgBannerSrc": "/assets/banner/hljjt.png",
-				"imgSrc": "/assets/comm/hljjt.png"
-			},
-			{
-				"id": 3,
-				"name": "山西家庭",
-				"votes": "12314",
-				"imgBannerSrc": "/assets/banner/sxjt.png",
-				"imgSrc": "/assets/comm/sxjt.png"
-			},
-			{
-				"id": 4,
-				"name": "苏州家庭",
-				"votes": "22334",
-				"imgBannerSrc": "/assets/banner/szjt.png",
-				"imgSrc": "/assets/comm/szjt.png"
-			},
-			{
-				"id": 5,
-				"name": "厦门家庭",
-				"votes": "12323",
-				"imgBannerSrc": "/assets/banner/xmjt.png",
-				"imgSrc": "/assets/comm/xmjt.png"
-			}
-		]
-	}
-
-/***/ },
-/* 304 */
+/* 306 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
