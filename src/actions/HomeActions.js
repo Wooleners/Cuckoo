@@ -4,6 +4,7 @@ import request from 'reqwest';
 class HomeActions {
   constructor() {
     this.generateActions(
+      'showDialog',
       'getSortListSuccess',
       'getSortListFail',
       'sendScoreSuccess',
@@ -17,16 +18,38 @@ class HomeActions {
 
   getSortList() {
 
-    request({
-        url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerListInfo.do',
-        type: 'jsonp'
-      })
-      .then((res) => {
-        !(res.flag - 0) ? this.actions.getSortListSuccess(res.list): this.actions.getSortListFail(res.msg);
-      })
-      .fail(() => {
-        this.actions.getSortListFail("请求失败")
-      });
+    this.actions.getSortListSuccess([
+        {
+          id: 1001,
+          votes: 12345
+        },
+        {
+          id: 1002,
+          votes: 13445
+        },
+        {
+          id: 1003,
+          votes: 12377
+        },
+        {
+          id: 1004,
+          votes: 16882
+        },
+        {
+          id: 1005,
+          votes: 11064
+        }
+      ]);
+    // request({
+    //     url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerListInfo.do',
+    //     type: 'jsonp'
+    //   })
+    //   .then((res) => {
+    //     !(res.flag - 0) ? this.actions.getSortListSuccess(res.list): this.actions.getSortListFail(res.msg);
+    //   })
+    //   .fail(() => {
+    //     this.actions.getSortListFail("请求失败")
+    //   });
   }
 
   getSortListVote() {
@@ -35,7 +58,7 @@ class HomeActions {
   }
 
   showDialog(type) {
-
+    this.actions.showDialog(type);
   }
 
   vote(sortId) {
@@ -49,19 +72,19 @@ class HomeActions {
       flag: 1,
       callback: function(){
         this.actions.argsVerifyFail();
-        this.actions.showDialog('argsVerifyFail');
+        //this.actions.showDialog('argsVerifyFail');
       }
     }, {
       flag: 2,
       callback: function(){
         this.actions.unLogin();
-        this.actions.showDialog('unLogin');
+        //this.actions.showDialog('unLogin');
       }
     }, {
       flag: -1,
       callback: function(){
         this.actions.sysException();
-        this.actions.showDialog('sysException');
+        //this.actions.showDialog('sysException');
       }
     }, {
       flag: 4,
@@ -76,23 +99,27 @@ class HomeActions {
         this.actions.showDialog('yetOverdue');
       }
     }];
-    request({
-        url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerVote.do',
-        type: 'jsonp',
-        data: {
-          activeType: "2030",
-          answerResult: sortId,
-          source: "app"
-        }
+    // request({
+    //     url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerVote.do',
+    //     type: 'jsonp',
+    //     data: {
+    //       activeType: "2030",
+    //       answerResult: sortId,
+    //       source: "app"
+    //     }
+    //   })
+    //   .then((res) => {
+    //     flagsTemp.forEach((item, index) => {
+    //       item.flag == res.flag ? item.callback.bind(this)() : false;
+    //     })
+    //   })
+    //   .fail(() => {
+    //     console.log("请求失败");
+    //   });
+
+      flagsTemp.forEach((item, index) => {
+        item.flag == 5 ? item.callback.bind(this)() : false;
       })
-      .then((res) => {
-        flagsTemp.forEach((item, index) => {
-          item.flag == res.flag ? item.callback.bind(this)() : false;
-        })
-      })
-      .fail(() => {
-        console.log("请求失败");
-      });
   }
 }
 

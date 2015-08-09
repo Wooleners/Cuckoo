@@ -5,7 +5,7 @@ var pkg = require('./package');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://127.0.0.1:3000', // WebpackDevServer host and port
+    'webpack-dev-server/client?http://192.168.1.101:3000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server',
     './src/index.js' // Your appʼs entry point
   ],
