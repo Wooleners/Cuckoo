@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import ProfileStore from '../stores/ProfileStore';
 import ProfileActions from '../actions/ProfileActions';
+import HomeActions from '../actions/HomeActions';
 
 class Profile extends React.Component {
   constructor(props, context) {
@@ -32,16 +33,16 @@ class Profile extends React.Component {
     this.setState(state);
   }
 
-  handleClick(item) {
-
+  handleVote(item) {
+    HomeActions.vote(this.state.paramsId);
   }
 
   render() {
     return (
       <div className="pas-profile">
         <div className="header">
-            <a href="#" className="f_right"><img src="/assets/btn_back.png" alt="" /></a>
-            <img src="/assets/header_img.png" alt="" />
+            <a href="#" className="f_right"><img src="http://img2.pingan.com/app_images/kfj/assets/btn_back.png" alt="" /></a>
+            <img src="http://img2.pingan.com/app_images/kfj/assets/header_img.png" alt="" />
         </div>
         <div className="content">
             <div className="show"><img src={this.state.profileInfo.profileImgSrc} alt="" /></div>
@@ -57,12 +58,12 @@ class Profile extends React.Component {
                 </ul>
             </div>
             <div className="btn_box">
-                <a href="#"><img src="/assets/btn_1.png" alt="" /></a>
-                <a href="#"><img src="/assets/btn_2.png" alt="" /></a>
+                <a href="javascript:void(0)"><img src="http://img2.pingan.com/app_images/kfj/assets/btn_1.png" alt="" /></a>
+                <a href="javascript:void(0)"><img src="http://img2.pingan.com/app_images/kfj/assets/btn_2.png" onClick={this.handleVote.bind(this)} alt="" /></a>
             </div>
         </div>
         <div className="more">
-            <img src="/assets/hand.png" alt="" /><a href="#"><img src="/assets/btn_3.png" alt="" /></a>
+            <img src="http://img2.pingan.com/app_images/kfj/assets/hand.png" alt="" /><a href="#"><img src="http://img2.pingan.com/app_images/kfj/assets/btn_3.png" alt="" /></a>
         </div>
 	    </div>
     );

@@ -7,8 +7,8 @@
     "joinArea": "重庆",
     "promotionArea": "中区",
     "imgBannerSrc": "/assets/banner/cqjt.png",
-    "imgSrc": "/assets/comm/cqjt.png",
-    "profileImgSrc": "/assets/profile/cqjt.png"
+    "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/cqjt.png",
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/cqjt.png"
   }, {
     "id": 1002,
     "name": "冰城Q宝",
@@ -16,9 +16,9 @@
     "joinManifesto": "QQ棒QQ强，QQ配音最闪亮",
     "joinArea": "哈尔滨",
     "promotionArea": "北区",
-    "imgBannerSrc": "/assets/banner/hljjt.png",
-    "imgSrc": "/assets/comm/hljjt.png",
-    "profileImgSrc": "/assets/profile/hljjt.png"
+    "imgBannerSrc": "http://img2.pingan.com/app_images/kfj/assets/banner/hljjt.png",
+    "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/hljjt.png",
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/hljjt.png"
   }, {
     "id": 1003,
     "name": "魔幻舞团",
@@ -26,9 +26,9 @@
     "joinManifesto": "舞动新节奏，happy伐木累！",
     "joinArea": "山西",
     "promotionArea": "中西区",
-    "imgBannerSrc": "/assets/banner/sxjt.png",
-    "imgSrc": "/assets/comm/sxjt.png",
-    "profileImgSrc": "/assets/profile/sxjt.png"
+    "imgBannerSrc": "http://img2.pingan.com/app_images/kfj/assets/banner/sxjt.png",
+    "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/sxjt.png",
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/sxjt.png"
   }, {
     "id": 1004,
     "name": "开心满屋",
@@ -36,9 +36,9 @@
     "joinManifesto": "悦瑶悦瑶，聪颖灵巧；喜弄车鼓，看我悦瑶！",
     "joinArea": " 厦门",
     "promotionArea": "南区",
-    "imgBannerSrc": "/assets/banner/szjt.png",
-    "imgSrc": "/assets/comm/szjt.png",
-    "profileImgSrc": "/assets/profile/szjt.png"
+    "imgBannerSrc": "http://img2.pingan.com/app_images/kfj/assets/banner/szjt.png",
+    "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/szjt.png",
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/szjt.png"
   }, {
     "id": 1005,
     "name": " 江南之音",
@@ -46,8 +46,8 @@
     "joinManifesto": "天禹天禹，谁与争锋",
     "joinArea": "苏州",
     "promotionArea": "东区",
-    "imgBannerSrc": "/assets/banner/xmjt.png",
-    "imgSrc": "/assets/comm/xmjt.png",
-    "profileImgSrc": "/assets/profile/xmjt.png"
+    "imgBannerSrc": "http://img2.pingan.com/app_images/kfj/assets/banner/xmjt.png",
+    "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/xmjt.png",
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/xmjt.png"
   }]
 }

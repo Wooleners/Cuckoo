@@ -17,39 +17,16 @@ class HomeActions {
   }
 
   getSortList() {
-
-    this.actions.getSortListSuccess([
-        {
-          id: 1001,
-          votes: 12345
-        },
-        {
-          id: 1002,
-          votes: 13445
-        },
-        {
-          id: 1003,
-          votes: 12377
-        },
-        {
-          id: 1004,
-          votes: 16882
-        },
-        {
-          id: 1005,
-          votes: 11064
-        }
-      ]);
-    // request({
-    //     url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerListInfo.do',
-    //     type: 'jsonp'
-    //   })
-    //   .then((res) => {
-    //     !(res.flag - 0) ? this.actions.getSortListSuccess(res.list): this.actions.getSortListFail(res.msg);
-    //   })
-    //   .fail(() => {
-    //     this.actions.getSortListFail("请求失败")
-    //   });
+    request({
+        url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerListInfo.do',
+        type: 'jsonp'
+      })
+      .then((res) => {
+        !(res.flag - 0) ? this.actions.getSortListSuccess(res.list): this.actions.getSortListFail(res.msg);
+      })
+      .fail(() => {
+        this.actions.getSortListFail("请求失败")
+      });
   }
 
   getSortListVote() {
@@ -64,62 +41,68 @@ class HomeActions {
   vote(sortId) {
     var flagsTemp = [{
       flag: 0,
-      callback: function(){
+      callback: function() {
         this.actions.sendScoreSuccess();
         this.actions.showDialog('sendScoreSuccess');
+        //again get sortlist
+        this.actions.getSortList();
       }
     }, {
       flag: 1,
-      callback: function(){
+      callback: function() {
         this.actions.argsVerifyFail();
-        //this.actions.showDialog('argsVerifyFail');
+        this.actions.showDialog('argsVerifyFail');
       }
     }, {
       flag: 2,
-      callback: function(){
+      callback: function() {
         this.actions.unLogin();
-        //this.actions.showDialog('unLogin');
+        this.actions.showDialog('unLogin');
+        this.actions.getSortList();
+        localStorage.setItem('pashow', true);
       }
     }, {
       flag: -1,
-      callback: function(){
+      callback: function() {
         this.actions.sysException();
-        //this.actions.showDialog('sysException');
+        this.actions.showDialog('sysException');
       }
     }, {
       flag: 4,
-      callback: function(){
+      callback: function() {
         this.actions.yetSentScore();
         this.actions.showDialog('yetSentScore');
       }
     }, {
       flag: 5,
-      callback: function(){
+      callback: function() {
         this.actions.yetOverdue();
         this.actions.showDialog('yetOverdue');
       }
+    },{
+      flag: 'a04',
+      callback: function() {
+        this.actions.yetSentScore();
+        this.actions.showDialog('yetSentScore');
+      }
     }];
-    // request({
-    //     url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerVote.do',
-    //     type: 'jsonp',
-    //     data: {
-    //       activeType: "2030",
-    //       answerResult: sortId,
-    //       source: "app"
-    //     }
-    //   })
-    //   .then((res) => {
-    //     flagsTemp.forEach((item, index) => {
-    //       item.flag == res.flag ? item.callback.bind(this)() : false;
-    //     })
-    //   })
-    //   .fail(() => {
-    //     console.log("请求失败");
-    //   });
-
-      flagsTemp.forEach((item, index) => {
-        item.flag == 5 ? item.callback.bind(this)() : false;
+    request({
+        url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerVote.do',
+        type: 'jsonp',
+        data: {
+          activeType: "2030",
+          answerResult: sortId,
+          source: "app"
+        }
       })
+      .then((res) => {
+        flagsTemp.forEach((item, index) => {
+          item.flag == res.flag ? item.callback.bind(this)() : false;
+        })
+      })
+      .fail(() => {
+        console.log("请求失败");
+      });
   }
 }
 

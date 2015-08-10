@@ -10,14 +10,14 @@ class Dialog extends React.Component {
     !visible ? classNames.push('pas-dialog-hidden') : false;
     var temps = [{
       type: 'actIns',
-      content: <img src="/assets/actins.png" />
+      content: <img src="http://img2.pingan.com/app_images/kfj/assets/actins.png" />
     }, {
       type: 'sendScoreSuccess',
-      content: <div className="dialogContent"><img src="/assets/voteSuccess.png" /><div className="share"></div></div>
+      content: <div className="dialogContent"><img src="http://img2.pingan.com/app_images/kfj/assets/voteSuccess.png" /><div className="share"></div></div>
     }, {
       type: 'yetSentScore',
       content: <div className="dialogContent">
-        <img src="/assets/revote.png" />
+        <img src="http://img2.pingan.com/app_images/kfj/assets/revote.png" />
         <div className="btnContent">
           <div className="expHealthManager"></div>
           <div className="yetShare"></div>
@@ -26,10 +26,25 @@ class Dialog extends React.Component {
     }, {
       type: 'yetOverdue',
       content: <div className="dialogContent">
-        <img src="/assets/actOver.png" />
+        <img src="http://img2.pingan.com/app_images/kfj/assets/actOver.png" />
         <div class="btnContent">
           <div className="overExpHealthManager"></div>
           <div className="backGamesZone"></div>
+        </div>
+      </div>
+    }, {
+      type: 'sysException',
+      content: '系统异常'
+    }, {
+      type: 'argsVerifyFail',
+      content: '参数错误'
+    }, {
+      type: 'unLogin',
+      content: <div className="dialogContent">
+        <img src="http://img2.pingan.com/app_images/kfj/assets/voteSuccess.png" />
+        <div className="btnContent">
+          <div className="loginTOA"></div>
+          <div className="loginShare"></div>
         </div>
       </div>
     }];
@@ -40,7 +55,7 @@ class Dialog extends React.Component {
       <div className={classNames.join(" ")}>
       	<div className="box">
       		<a className="close" onClick={props.onClose}></a>
-          <span className="top-icon"><img src="/assets/animal2.png" /></span>
+          <span className="top-icon"><img src="http://img2.pingan.com/app_images/kfj/assets/animal2.png" /></span>
       		<div className="content">
       			<div className="inner"></div>
       			<div className="mv-word">
