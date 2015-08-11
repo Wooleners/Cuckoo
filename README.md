@@ -1,4 +1,6 @@
-#PAShow
+#Cuckoo
+
+a realtime vote application base react
 
 ##installed
 
