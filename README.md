@@ -1,6 +1,6 @@
 #Cuckoo
 
-a realtime vote application base react
+a real-time vote web application base on react
 
 ##installed
 
