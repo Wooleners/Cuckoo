@@ -51,6 +51,22 @@ class Home extends React.Component {
 
   }
 
+  goHome(){
+    window.location.href='/c3/huodong/2015kfj/index.shtml';
+  }
+
+  goPADoctor(){
+    !(typeof Native == "undefined") ? Native.toPADoctor() : false;
+  }
+
+  backGamesZone(){
+    window.location.href='/c3/huodong/2015kfj/gamesZone.html';
+  }
+
+  shareFunc(){
+    !(typeof Native == "undefined") ? Native.share("2015平安人寿第20届客服节", "与平安相伴,与健康同行--平安人寿第20届客服节欢迎您的参与!", "http://m.pingan.com/c3/huodong/2015kfj/h5/index.shtml", "http://m.pingan.com/c3/huodong/2015kfj/h5/index.shtml") : false;
+  }
+
   render() {
     var sortList = this.state.sortList.filter((item, index) => {
       return index !== 0 ? item : false;
@@ -66,8 +82,8 @@ class Home extends React.Component {
             <span className="spec">1亿万里通积分</span>等您分享！
           </section>
           <section className="page-button">
-                <a className="icon page-button-next" href=""></a>
-                <a className="icon page-button-return"></a>
+                <a className="icon page-button-next" href="javascript:void(0)" onClick={this.goPADoctor}></a>
+                <a className="icon page-button-return" href="javascript:void(0)" onClick={this.backGamesZone}></a>
                 <div className="icon page-flag"></div>
           </section>
         </div>

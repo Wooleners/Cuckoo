@@ -1,6 +1,23 @@
 import React from 'react';
 
 class Dialog extends React.Component {
+
+  goHome(){
+    window.location.href='/c3/huodong/2015kfj/index.shtml';
+  }
+
+  goPADoctor(){
+    !(typeof Native == "undefined") ? Native.toPADoctor() : false;
+  }
+
+  backGamesZone(){
+    window.location.href='/c3/huodong/2015kfj/gamesZone.html';
+  }
+
+  shareFunc(){
+    !(typeof Native == "undefined") ? Native.share("2015平安人寿第20届客服节", "与平安相伴,与健康同行--平安人寿第20届客服节欢迎您的参与!", "http://m.pingan.com/c3/huodong/2015kfj/h5/index.shtml", "http://m.pingan.com/c3/huodong/2015kfj/h5/index.shtml") : false;
+  }
+
   render() {
     var props = this.props,
         visible = props.visible,
@@ -13,14 +30,17 @@ class Dialog extends React.Component {
       content: <img src="http://img2.pingan.com/app_images/kfj/assets/actins.png" />
     }, {
       type: 'sendScoreSuccess',
-      content: <div className="dialogContent"><img src="http://img2.pingan.com/app_images/kfj/assets/voteSuccess.png" /><div className="share"></div></div>
+      content: <div className="dialogContent">
+        <img src="http://img2.pingan.com/app_images/kfj/assets/voteSuccess.png" />
+        <a className="share" onClick={this.shareFunc}></a>
+      </div>
     }, {
       type: 'yetSentScore',
       content: <div className="dialogContent">
         <img src="http://img2.pingan.com/app_images/kfj/assets/revote.png" />
         <div className="btnContent">
-          <div className="expHealthManager"></div>
-          <div className="yetShare"></div>
+          <a className="expHealthManager" onClick={this.goPADoctor}></a>
+          <a className="yetShare" onClick={this.shareFunc}></a>
         </div>
       </div>
     }, {
@@ -28,8 +48,8 @@ class Dialog extends React.Component {
       content: <div className="dialogContent">
         <img src="http://img2.pingan.com/app_images/kfj/assets/actOver.png" />
         <div class="btnContent">
-          <div className="overExpHealthManager"></div>
-          <div className="backGamesZone"></div>
+          <a className="overExpHealthManager" onClick={this.goPADoctor}></a>
+          <a className="backGamesZone" onClick={this.backGamesZone}></a>
         </div>
       </div>
     }, {
@@ -43,8 +63,8 @@ class Dialog extends React.Component {
       content: <div className="dialogContent">
         <img src="http://img2.pingan.com/app_images/kfj/assets/voteSuccess.png" />
         <div className="btnContent">
-          <div className="loginTOA"></div>
-          <div className="loginShare"></div>
+          <a className="loginTOA" onClick={this.goHome}></a>
+          <a className="loginShare" onClick={this.shareFunc}></a>
         </div>
       </div>
     }];

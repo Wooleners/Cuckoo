@@ -37,12 +37,28 @@ class Profile extends React.Component {
     HomeActions.vote(this.state.paramsId);
   }
 
+  goHome(){
+    window.location.href='/c3/huodong/2015kfj/index.shtml';
+  }
+
+  goPADoctor(){
+    !(typeof Native == "undefined") ? Native.toPADoctor() : false;
+  }
+
+  backGamesZone(){
+    window.location.href='/c3/huodong/2015kfj/gamesZone.html';
+  }
+
+  shareFunc(){
+    !(typeof Native == "undefined") ? Native.share("2015平安人寿第20届客服节", "与平安相伴,与健康同行--平安人寿第20届客服节欢迎您的参与!", "http://m.pingan.com/c3/huodong/2015kfj/h5/index.shtml", "http://m.pingan.com/c3/huodong/2015kfj/h5/index.shtml") : false;
+  }
+
   render() {
     return (
       <div className="pas-profile">
         <div className="header">
-            <a href="#" className="f_right"><img src="http://img2.pingan.com/app_images/kfj/assets/btn_back.png" alt="" /></a>
-            <img src="http://img2.pingan.com/app_images/kfj/assets/header_img.png" alt="" />
+            <a href="#" className="header-right f_right"><img className="btn_back" src="http://img2.pingan.com/app_images/kfj/assets/btn_back.png" alt="" /></a>
+            <img className="logo" src="http://img2.pingan.com/app_images/kfj/assets/header_img.png" alt="" />
         </div>
         <div className="content">
             <div className="show"><img src={this.state.profileInfo.profileImgSrc} alt="" /></div>
@@ -63,7 +79,7 @@ class Profile extends React.Component {
             </div>
         </div>
         <div className="more">
-            <img src="http://img2.pingan.com/app_images/kfj/assets/hand.png" alt="" /><a href="#"><img src="http://img2.pingan.com/app_images/kfj/assets/btn_3.png" alt="" /></a>
+            <img class="pleaseClick" src="http://img2.pingan.com/app_images/kfj/assets/hand.png" alt="" /><a href="#"><img className="getMore" onClick={this.goPADoctor} src="http://img2.pingan.com/app_images/kfj/assets/btn_3.png" alt="" /></a>
         </div>
 	    </div>
     );

@@ -10,256 +10,301 @@ html {
     -webkit-text-size-adjust: 100%;
     font-size: 62.5%;
 }
+
 body {
     margin: 0;
     font-size: 1.4rem;
     line-height: 1.5;
-    color: #333;
+    color: #333333;
     background-color: white;
     height: 100%;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
 }
+
 a {
     background: transparent;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
-    color: #08c;
+    color: #0088cc;
 }
+
 a:active {
     outline: 0;
 }
+
 a:active {
-    color: #069;
+    color: #006699;
 }
+
 img {
     border: 0;
     vertical-align: middle;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-figure,
-form,
-blockquote {
+
+h1, h2, h3, h4, h5, h6, p, figure, form, blockquote {
     margin: 0;
 }
-ul,
-ol,
-li,
-dl,
-dd {
+
+ul, ol, li, dl, dd {
     margin: 0;
     padding: 0;
 }
-ul,
-ol {
+
+ul, ol {
     list-style: none outside none;
 }
-h1,
-h2,
-h3 {
+
+h1, h2, h3 {
     line-height: 2;
     font-weight: normal;
 }
+
 h1 {
     font-size: 1.8rem;
 }
+
 h2 {
     font-size: 1.6rem;
 }
+
 h3 {
     font-size: 1.4rem;
 }
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-    color: #ccc;
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #cccccc;
 }
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-    color: #ccc;
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    color: #cccccc;
 }
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-    color: #ccc;
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #cccccc;
 }
+
 /*清除浮动代码*/
 .clearfloat:after {
     display: block;
     clear: both;
     content: "";
     visibility: hidden;
-    height: 0;
+    height: 0
 }
+
 .clearfloat {
-    zoom: 1;
+    zoom: 1
 }
+
 #app {
     background: url("@{images-url}/bbg.png") repeat-y;
 }
+
 .icon {
     background: url("@{images-url}/icon.png") no-repeat;
+    background-size: 154px 225px;
 }
+
 .pas-sortlist {
     background: url("@{images-url}/bg.png") no-repeat;
-    padding-top: 134px;
+    background-size: 100%;
+    padding-top: 22%;
     width: 100%;
     margin: 0 auto;
 }
-.page-top {
 
+.page-top {
 }
+
 .page-top-left {
     float: left;
-    margin-left: 18px;
-    width: 62.8125%;
-    margin-left: 10px;
-}
-.page-top-right {
-    float: right;
-    width: 29.0625%;
+    margin-left: 9px;
+    width: 63%;
+    margin-left: 5px;
 }
 .page-top-left img{
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
+
+.page-top-right {
+    float: right;
+    width: 29.1%;
+    margin-top: 5%;
+}
+
 .active-explain {
-    width: 136px;
-    height: 43px;
-    background-position: 0 0;
-    line-height: 41px;
-    z-index: 10;
-    display: inline-block;
+    display: block;
+    width: 68px;
+    height: 22px;
+    background-position: 0px 0px;
+    line-height: 20px;
 }
+
 .active-no {
-    width: 105px;
-    height: 120px;
-    margin-top: 25px;
-    margin-bottom: 10px;
-    padding-left: 72px;
-    line-height: 41px;
-    padding-top: 24px;
+    width: 52px;
+    height: 60px;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    padding-left: 36px;
+    line-height: 20px;
+    padding-top: 12px;
     color: #fffefe;
-    font-size: 26px;
+    font-size: 13px;
     background: url("@{images-url}/tree.png") no-repeat;
+    background-size: 88px 72px;
 }
+
 .active-btn-view {
-    width: 90px;
-    height: 44px;
-    background-position: 0 -51px;
+    width: 43px;
+    height: 22px;
+    background-position: 0 -25px;
     display: inline-block;
 }
+
 .active-btn-vote {
-    width: 90px;
-    height: 44px;
-    background-position: 0 -104px;
+    width: 45px;
+    height: 22px;
+    background-position: 0 -52px;
     display: inline-block;
 }
+
 .page-list-ul {
-    margin: 18px auto 0;
-    width: 96.875%;
+    margin: 0 auto;
+    margin-top: 18px;
+    width: 100%;
 }
+
 .page-list-ul li {
     float: left;
     margin-bottom: 30px;
     width: 50%;
 }
+
 .list-ul-div {
-    width: 263px;
+    width: 132px;
     position: relative;
     margin: 0 auto;
 }
+
 .imgbg {
     position: absolute;
-    width: 293px;
-    height: 214px;
-    top: -15px;
-    left: -17px;
+    width: 146px;
+    height: 107px;
+    top: -6px;
+    left: -8px;
+    background: url("@{images-url}/imgbg.png") no-repeat;
+    background-size: 100% 100%;
     z-index: 10;
 }
+
 .page-list-ul li img {
-    width: 264px;
-    height: 175px;
+    width: 132px;
+    height: 87px;
     margin: 0 auto;
 }
+
 .li-btn {
     margin-top: 10px;
     text-align: center;
 }
+
 .subimgno {
     position: absolute;
     z-index: 11;
     left: 1px;
-    top: -17px;
-    color: #fff;
-    font-size: 30px;
-    text-shadow: 1px 0 0 #eb8900,-1px 0 0 #eb8900, 0 1px 0 #eb8900, 0 -1px 0 #eb8900;
+    top: -6px;
+    color: #ffffff;
+    font-size: 15px;
+    text-shadow: 1px 0px 0px #eb8900, -1px 0px 0px #eb8900, 0px 1px 0px #eb8900, 0px -1px 0px #eb8900;
 }
+
 .note {
     position: absolute;
     z-index: 11;
-    color: #fff;
-    font-size: 20px;
-    left: 30px;
-    top: -12px;
-    line-height: 28px;
+    color: #ffffff;
+    font-size: 12px;
+    left: 15px;
+    top: -4px;
+    line-height: 14px;
 }
+
 .page-btm1 {
-    padding-top: 56px;
-    width: 498px;
-    height: 96px;
-    margin: -38px auto 0;
+    padding-top: 28px;
+    width: 249px;
+    height: 48px;
+    margin: 0 auto;
+    margin-top: -19px;
     background: url("@{images-url}/cd.png") no-repeat;
+    background-size: 100%;
     text-align: center;
     color: #fff;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 12px;
 }
-.page-btm1 span.spec {
-    color: #ffec1e;
+
+.page-btm1 span {
+    color: #ffec1e
 }
+
 .page-button {
-    width: 308px;
+    width: 154px;
     position: relative;
     margin: 0 auto;
 }
+
 .page-button-next {
-    width: 308px;
-    height: 49px;
-    background-position: 0 -191px;
+    width: 154px;
+    height: 24px;
+    background-position: 0px -95px;
     display: block;
-    margin-bottom: 14px;
+    margin-bottom: 7px;
 }
+
 .page-button-return {
-    width: 308px;
-    height: 49px;
-    background-position: 0 -250px;
+    width: 154px;
+    height: 24px;
+    background-position: 0px -125px;
     display: block;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
+
 .page-flag {
     position: absolute;
-    width: 90px;
-    height: 30px;
-    left: -88px;
-    top: 7px;
-    background-position: 0 -153px;
+    width: 45px;
+    height: 15px;
+    left: -44px;
+    top: 3px;
+    background-position: 0px -76px;
 }
+
 .sub-page {
-    padding-top: 972px;
+    height: 100%;
     background: url("@{images-url}/nbg.png") no-repeat;
-    height: 164px;
+    background-size: 100% 100%;
 }
+.sub-page-footer{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5%;
+}
+
 .sub-page-text {
     text-align: center;
     color: #3b6409;
-    font-size: 27px;
+    font-size: 14px;
     font-weight: bold;
-    line-height: 57px;
-    text-shadow: 1px 1px 0 #e4f1ff;
+    line-height: 28px;
+    text-shadow: 1px 1px 0 #E4F1FF;
 }
-.sub-page-btn{width: 215px; height: 64px; margin-bottom: 84px; margin: 0 auto; background-position: -33px -347px;}
+
+.sub-page-btn {
+    width: 107px;
+    height: 32px;
+    margin-bottom: 42px;
+    margin: 0 auto;
+    background-position: -16px -173px;
+}
