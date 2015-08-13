@@ -18,7 +18,7 @@ class HomeActions {
 
   getSortList() {
     request({
-        url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerListInfo.do',
+        url: 'http://life.pingan.com/binfenxiari/kfjPlayerListInfo.do',
         type: 'jsonp'
       })
       .then((res) => {
@@ -87,7 +87,7 @@ class HomeActions {
       }
     }];
     request({
-        url: 'http://life.dmzstg.pingan.com.cn/binfenxiari/kfjPlayerVote.do',
+        url: 'http://life.pingan.com/binfenxiari/kfjPlayerVote.do',
         type: 'jsonp',
         data: {
           activeType: "2030",

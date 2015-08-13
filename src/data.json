@@ -6,9 +6,11 @@
     "joinManifesto": "相伴成长，共筑理想。创意才艺，共创..",
     "joinArea": "重庆",
     "promotionArea": "中区",
-    "imgBannerSrc": "/assets/banner/cqjt.png",
+    "imgBannerSrc": "http://img2.pingan.com/app_images/kfj/assets/banner/cqjt.png",
     "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/cqjt.png",
-    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/cqjt.png"
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/cqjt.png",
+    "joyUrl": "http://v.ku6.com/fetchwebm/B03qZ2BdXzUpt9z2EhW-Gg...m3u8",
+    "joyPoster": "http://vi1.ku6img.com/data1/p7/ku6video/2015/8/5/10/1444257506223_144682804_144682804/8.jpg"
   }, {
     "id": 1002,
     "name": "冰城Q宝",
@@ -18,17 +20,21 @@
     "promotionArea": "北区",
     "imgBannerSrc": "http://img2.pingan.com/app_images/kfj/assets/banner/hljjt.png",
     "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/hljjt.png",
-    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/hljjt.png"
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/hljjt.png",
+    "joyUrl": "http://v.ku6.com/fetchwebm/FNOmFHECT9Xhxm0b9uW7Cg...m3u8",
+    "joyPoster": "http://vi0.ku6img.com/data2/p12/ku6video/2015/8/5/10/1444257171280_144682479_144682479/3.jpg"
   }, {
     "id": 1003,
     "name": "魔幻舞团",
-    "memberInfo": "儿子、女儿、爸爸、妈妈",
+    "memberInfo": "永庆、怡珂、爸爸、妈妈",
     "joinManifesto": "舞动新节奏，happy伐木累！",
     "joinArea": "山西",
     "promotionArea": "中西区",
     "imgBannerSrc": "http://img2.pingan.com/app_images/kfj/assets/banner/sxjt.png",
     "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/sxjt.png",
-    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/sxjt.png"
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/sxjt.png",
+    "joyUrl": "http://v.ku6.com/fetchwebm/kSkmEyc5WtJMC0r8S-i12A...m3u8",
+    "joyPoster": "http://vi1.ku6img.com/data1/p6/ku6video/2015/8/5/11/1444257285604_144684431_144684431/6.jpg"
   }, {
     "id": 1004,
     "name": "开心满屋",
@@ -38,7 +44,9 @@
     "promotionArea": "南区",
     "imgBannerSrc": "http://img2.pingan.com/app_images/kfj/assets/banner/szjt.png",
     "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/szjt.png",
-    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/szjt.png"
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/szjt.png",
+    "joyUrl": "http://v.ku6.com/fetchwebm/fn8r7SINOn-nR7QN_XkVwQ...m3u8",
+    "joyPoster": "http://vi0.ku6img.com/data2/p12/ku6video/2015/8/5/10/1444257171280_144682479_144682479/5.jpg"
   }, {
     "id": 1005,
     "name": " 江南之音",
@@ -48,6 +56,8 @@
     "promotionArea": "东区",
     "imgBannerSrc": "http://img2.pingan.com/app_images/kfj/assets/banner/xmjt.png",
     "imgSrc": "http://img2.pingan.com/app_images/kfj/assets/comm/xmjt.png",
-    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/xmjt.png"
+    "profileImgSrc": "http://img2.pingan.com/app_images/kfj/assets/profile/xmjt.png",
+    "joyUrl": "http://v.ku6.com/fetchwebm/VLYHq02iwPkzaLuolBgmEQ...m3u8",
+    "joyPoster": "http://vi0.ku6img.com/data2/p12/ku6video/2015/8/5/10/1444257171280_144682479_144682479/5.jpg"
   }]
 }

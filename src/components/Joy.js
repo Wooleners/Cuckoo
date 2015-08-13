@@ -1,25 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router';
-import ProfileStore from '../stores/ProfileStore';
-import ProfileActions from '../actions/ProfileActions';
+import JoyStore from '../stores/JoyStore';
+import JoyActions from '../actions/JoyActions';
 import HomeActions from '../actions/HomeActions';
 
-class Profile extends React.Component {
+class Joy extends React.Component {
   constructor(props, context) {
     super(props);
-    this.state = ProfileStore.getState();
+    this.state = JoyStore.getState();
     this.state.paramsId = context.router.getCurrentParams().id;
-    this.state.votes = context.router.getCurrentQuery().votes;
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    ProfileStore.listen(this.onChange);
-    ProfileActions.getProfileInfo(this.state.paramsId);
+    JoyStore.listen(this.onChange);
+    JoyActions.getJoyInfo(this.state.paramsId);
   }
 
   componentWillUnmount() {
-    ProfileStore.unlisten(this.onChange);
+    JoyStore.unlisten(this.onChange);
   }
 
   componentWillMount() {
@@ -58,23 +57,14 @@ class Profile extends React.Component {
       <div className="pas-profile">
         <div className="header">
             <a href="#" className="header-right f_right"><img className="btn_back" src="http://img2.pingan.com/app_images/kfj/assets/btn_back.png" alt="" /></a>
-            <img className="logo" src="http://img2.pingan.com/app_images/kfj/assets/header_img.png" alt="" />
+            <img className="logo" src="http://img2.pingan.com/app_images/kfj/assets/showLogo.png" alt="" />
         </div>
         <div className="content">
-            <div className="show"><img src={this.state.profileInfo.profileImgSrc} alt="" /></div>
-            <div className="title">{this.state.profileInfo.name}</div>
-            <div className="text">
-                <ul>
-                    <li><h2>选手组合简介</h2></li>
-                    <li><span>成员信息：</span>{this.state.profileInfo.memberInfo}</li>
-                    <li><span>参赛宣言：</span>{this.state.profileInfo.joinManifesto}</li>
-                    <li><span>参赛地区：</span>{this.state.profileInfo.joinArea}</li>
-                    <li><span>晋级赛区：</span>{this.state.profileInfo.promotionArea}</li>
-                    <li><span>票数：</span>{this.state.votes}</li>
-                </ul>
+            <div className="show">
+              <video src={this.state.profileInfo.joyUrl} controls poster={this.state.profileInfo.joyPoster}></video>
             </div>
+            <div className="title">{this.state.profileInfo.name}</div>
             <div className="btn_box">
-                <Link href="javascript:void(0)" to={"/Joy/" + this.state.profileInfo.id}><img src="http://img2.pingan.com/app_images/kfj/assets/btn_1.png" alt="" /></Link>
                 <a href="javascript:void(0)"><img src="http://img2.pingan.com/app_images/kfj/assets/btn_2.png" onClick={this.handleVote.bind(this)} alt="" /></a>
             </div>
         </div>
@@ -86,8 +76,8 @@ class Profile extends React.Component {
   }
 }
 
-Profile.contextTypes = {
+Joy.contextTypes = {
   router: React.PropTypes.func.isRequired
 };
 
-export default Profile;
+export default Joy;
